@@ -29,6 +29,10 @@ a, a:hover, a:focus {
   color: var(--dark-color);
 }
 
+dl, dd, dt, p {
+  margin: 0;
+}
+
 .wrap {
   min-width: 33.5rem;
   margin-top: 7.1rem;
@@ -141,15 +145,16 @@ a, a:hover, a:focus {
   align-items: center;
   flex-direction: column;
   margin: 0 3rem;
+  position: relative;
 }
 
-.keyvisual .finace, 
+.keyvisual .category, 
 .keyvisual .title {
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
 
-.finace {
+.category {
   text-align: center;
   font-size: 1.4rem;
   letter-spacing: .175rem;
@@ -162,4 +167,41 @@ a, a:hover, a:focus {
   letter-spacing: -0.038rem;
   text-align: center;
   margin: 2rem 0;
+}
+.info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 2.8rem;
+}
+
+.info dt {
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+}
+.info dd {
+  height: 2rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.info dd:not(:last-child) {
+  margin-right: 1.6rem;
+}
+
+.info .share {
+  width: 1.8rem;
+  margin-right: 1.1rem;
+  background-image: url(../assets/icon_share.svg);
+}
+.info .view {
+  width: 2.2rem;
+  margin-right: .9rem;
+  background-image: url(../assets/icon_views.svg);
+}
+.info .comments {
+  width: 2rem;
+  margin-right: 1rem;
+  background-image: url(../assets/icon_comments.svg);
 }
