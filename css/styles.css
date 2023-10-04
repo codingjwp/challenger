@@ -3,6 +3,7 @@
 :root {
   --dark-color: #000000;
   --light-color: #ffffff;
+  --light-gray-color: #f2f3f6;
   --logobox-color: #FF565C;
 }
 
@@ -24,13 +25,28 @@ button {
   background-color: transparent;
 }
 
-a, a:hover, a:focus {
+a {
   text-decoration: none;
-  color: var(--dark-color);
+  cursor: pointer;
+}
+a:hover, a:focus {
+  text-decoration: underline;
 }
 
 dl, dd, dt, p {
   margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  color: var(--dark-color);
 }
 
 .wrap {
@@ -120,6 +136,38 @@ dl, dd, dt, p {
   line-height: 0;
   color: var(--light-color);
 }
+/* nav 부분 */
+.gnb {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 7.1rem;
+  height: 0;
+  overflow: hidden;
+  background-color: var(--light-color);
+  box-shadow: 0 0 0.5rem -0.5rem var(--dark-color);
+  will-change: height box-shadow;
+  transition-property: height, box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+}
+.gnb.open {
+  box-shadow: 0 0.5rem 0.5rem -0.5rem var(--dark-color);
+  height: 26.6rem;
+}
+.gnb li {
+  border-bottom: 0.1rem solid var(--light-gray-color);
+}
+
+.gnb a {
+  display: flex;
+  align-items: center;
+  height: 3.7rem;
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  font-weight: 500;
+  padding: 0 2rem;
+}
 
 /* main 레이아웃 */
 
@@ -204,4 +252,8 @@ dl, dd, dt, p {
   width: 2rem;
   margin-right: 1rem;
   background-image: url(../assets/icon_comments.svg);
+}
+
+.hide {
+  display: none !important;
 }
