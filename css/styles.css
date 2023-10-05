@@ -1,69 +1,123 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@500&display=swap');
+/* 웹폰트 Lato, Oswald */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+/* root */
 :root {
-  --dark-color: #000000;
+  --dark-color: #1d1f24;
+  --dark-opacity4-color: rgba(0, 0, 0, 0.4);
+  --dark-opacity7-color: rgba(0, 0, 0, 0.7);
   --light-color: #ffffff;
   --light-gray-color: #f2f3f6;
-  --logobox-color: #FF565C;
+  --light-opacity2-color: rgba(255, 255, 255, 0.2);
+  --light-opacity3-color: rgba(255, 255, 255, 0.3); 
+  --light-opacity7-color: rgba(255, 255, 255, 0.7);
+  --point-color: #ff565c
 }
 
+/* reset css */
 html {
-  font-size: 62.5%;
+  font-size: 62.5%
 }
 
 body {
   margin: 0;
-  font-family: sans-serif;
   color: var(--dark-color);
 }
 
+body,
+input {
+  font-family: "Lato", sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-weight: normal;
+  margin: 0;
+}
+
+dl,
+dd,
+p {
+  margin: 0
+}
+
 button {
+  cursor: pointer;
+}
+
+button,
+input {
   appearance: none;
+  border: 0;
   border-radius: 0;
   padding: 0;
-  border: 0;
   background-color: transparent;
+}
+
+em {
+  font-style: normal;
 }
 
 a {
   text-decoration: none;
   cursor: pointer;
 }
-a:hover, a:focus {
+
+a:hover,
+a:active {
   text-decoration: underline;
 }
 
-dl, dd, dt, p {
-  margin: 0;
+img {
+  vertical-align: top;
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
+fieldset {
+  border: 0 none;
   margin: 0;
   padding: 0;
-  color: var(--dark-color);
+}
+
+/* 공통 부분 */
+.hidden_txt,
+legend {
+  position: absolute;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0);
+}
+
+.hide {
+  display: none !important;
+}
+.card .category,
+.keyvisual .title,
+gnb a {
+  font-family: "Oswald", sans-serif;
+}
+
+/* 레이아웃 */
+body { 
+  padding-top: 7.1rem;
+  background-color: #f9fafc;
 }
 
 .wrap {
-  min-width: 33.5rem;
-  margin-top: 7.1rem;
+  min-width: 32rem;
 }
 
-/* 헤더 레이아웃 */
-.header {
-  width: 100%;
-  height: 7rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: var(--light-color);
-  z-index: 10;
-  border-bottom: 1px solid #EBEBEB;
+.main_container >.inner, 
+.header > .inner {
+  margin: 0 auto;
 }
 
 .header > .inner {
@@ -73,72 +127,109 @@ li {
   align-items: center;
 }
 
-/* 로고 */
-.logo {
-  position: relative;
-  font-size: 2.4rem;
-  margin-left: 2rem;
-}
-.logo::after {
-  content: '';
-  position: absolute;
-  right: -.5rem;
-  bottom: .55rem;
-  width: .4rem;
-  height: .4rem;
-  background-color: var(--logobox-color);
+.header {
+  width: 100%;
+  height: 7rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: var(--light-color);
+  border-bottom: 1px solid #ebebeb;
+  z-index: 10;
 }
 
-/* 햄버거 부분 */
-.btn_hamburger {
-  width: 6.8rem;
-  height: 100%;
+/* header 부분 */
+.logo {
+  display: block;
+  position: relative;
+  color: var(--dark-color);
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  margin-left: 2rem;
+  padding-right: 0.6rem;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.7rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: var(--point-color);
+}
+
+.view_menu {
   position: relative;
   overflow: hidden;
+  width: 6.7rem;
+  height: 100%;
 }
-
-.btn_hamburger:before,
-.btn_hamburger:after,
-.btn_hamburger span {
-  content: "";
-  width: 2.8rem;
-  height: 0.2rem;
-  background-color: var(--dark-color);
-}
-
-.btn_hamburger::before,
-.btn_hamburger::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateZ(0);
-}
-
-.btn_hamburger::before {
-  margin-top: -.7rem;
-}
-.btn_hamburger::after {
-  margin-top: .7rem;
-}
-
-.btn_hamburger > span {
+.view_menu span {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.hidden_text {
+.view_menu::before,
+.view_menu::after {
+  content: "";
   position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  font-size: 0;
-  line-height: 0;
-  color: var(--light-color);
+  left: 50%;
+  top: 50%;
+  /* will-change: 사전에 어떤 요소가 변할 껀지 알려주는 역할
+  transform부분과 margin-top 부분이 변경됩니다.
+  */
+  will-change: transform, margin-top;
+  transition-property: transform, margin-top;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  transform: translate(-50%, -50%) rotateZ(0);
 }
-/* nav 부분 */
+
+.view_menu::before,
+.view_menu::after,
+.view_menu span {
+  width: 2.8rem;
+  height: 0.2rem;
+  background-color: var(--dark-color);
+}
+
+.view_menu::before {
+  margin-top: -0.7rem;
+}
+
+.view_menu::after {
+  margin-top: 0.7rem;
+}
+
+.view_menu.prev_close::before,
+.view_menu.prev_close::after,
+.view_menu.close::before,
+.view_menu.close::after {
+  margin-top: 0;
+}
+
+.view_menu.close span {
+  width: 0;
+}
+
+.view_menu.close::before {
+  transform: translate(-50%, -50%) rotateZ(45deg);
+}
+
+.view_menu.close::after {
+  transform: translate(-50%, -50%) rotateZ(-45deg);
+}
+
+.view_menu.close.next_close::before,
+.view_menu.close.next_close::after {
+  transform: translate(-50%, -50%) rotateZ(0);
+}
+
 .gnb {
-  position: absolute;
+  position: absolute;;
   width: 100%;
   left: 0;
   top: 7.1rem;
@@ -146,15 +237,17 @@ li {
   overflow: hidden;
   background-color: var(--light-color);
   box-shadow: 0 0 0.5rem -0.5rem var(--dark-color);
-  will-change: height box-shadow;
+  will-change: height, box-shadow;
   transition-property: height, box-shadow;
   transition-duration: 300ms;
   transition-timing-function: ease-out;
 }
+
 .gnb.open {
   box-shadow: 0 0.5rem 0.5rem -0.5rem var(--dark-color);
   height: 26.6rem;
 }
+
 .gnb li {
   border-bottom: 0.1rem solid var(--light-gray-color);
 }
@@ -164,96 +257,242 @@ li {
   align-items: center;
   height: 3.7rem;
   font-size: 1.4rem;
-  color: var(--dark-color);
   font-weight: 500;
+  color: var(--dark-color);
   padding: 0 2rem;
 }
 
-/* main 레이아웃 */
-
-.main {
-  padding: 2rem;
-}
-
-.header > .inner,
-.main > .inner {
-  margin: 0 auto;
-}
-
-.main .inner {
+/* gnb open시 배경 변경 부분 */
+.wrap:after {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
-  background-image: url(../assets/key_visual.png);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 300ms ease-out;
+  transition-property: background-color;
+  z-index: -1;
+  visibility: hidden;
+}
+.wrap.dimed:after {
+  visibility: visible;
+  z-index: auto;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.wrap.dimed.active:after {
+  background-color: var(--dark-opacity7-color);
 }
 
-.keyvisual > a {
-  color: var(--light-color);
-  height: 44.1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 3rem;
+/* main 콘텐츠 */
+/* card 부분 */
+.card {
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
   position: relative;
+  margin-bottom: 2rem;
+  min-height: 27.4rem;
 }
 
-.keyvisual .category, 
-.keyvisual .title {
-  font-family: "Oswald", sans-serif;
+.inner > .card:last-child {
+  margin-bottom: 0;
+}
+
+.card > a,
+.card .category,
+.card .info {
+  display: flex;
+  align-items: center;
+}
+
+.card > a {
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  color: var(--light-color);
+  background-color: var(--dark-opacity4-color);
+  height: 100%;
+  padding: 3rem 0 9rem;
+  min-height: 27.4rem;
+}
+
+.card > a:hover,
+.card > a:active {
+  text-decoration: none;
+}
+
+.card > a:hover .title,
+.card > a:active .title {
+  text-decoration: underline;
+}
+
+.card .category {
+  height: 4rem;
+  padding: 0 2.5rem;
+  margin-bottom: 2.3rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  background-color: var(--point-color);
+  color: var(--light-color);
   text-transform: uppercase;
 }
 
-.category {
-  text-align: center;
-  font-size: 1.4rem;
-  letter-spacing: .175rem;
-  padding: 1rem 2.5rem;
-  background-color: #FF565C;
+/* -webkit-box 부분 비표준 css 바꾸는 방법은?? */
+.card .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  max-height: 9rem;
+  padding: 0 6rem 0 2.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 2.4rem;
+  line-height: 3rem;
+  font-weight: 500;
 }
-.keyvisual .title {
-  font-size: 2.6rem;
-  line-height: 3.92rem;
-  letter-spacing: -0.038rem;
-  text-align: center;
-  margin: 2rem 0;
+.card .description {
+  color: var(--light-opacity7-color);
 }
-.info {
-  display: flex;
-  align-items: center;
+.card .info {
   position: absolute;
-  bottom: 2.8rem;
+  bottom: 2.5rem;
+  left: 2.8rem;
 }
 
-.info dt {
+.card .info dt {
   height: 2rem;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: contain;
 }
-.info dd {
-  height: 2rem;
-  font-size: 1.3rem;
-  font-weight: 400;
+
+.card .info .share {
+  width: 1.8rem;
+  margin-right: 1.1rem;
+  background-image: url(../assets/img/icon_share.svg);
 }
-.info dd:not(:last-child) {
+
+.card .info .view {
+  width: 2.2rem;
+  margin-right: 0.9rem;
+  background-image: url(../assets/img/icon_view.svg);
+}
+
+.card .info .comment {
+  width: 2rem;
+  margin-right: 1rem;
+  background-image: url(../assets/img/icon_comment.svg);
+}
+
+.card .info dd:not(:last-child) {
   margin-right: 1.6rem;
 }
 
-.info .share {
-  width: 1.8rem;
-  margin-right: 1.1rem;
-  background-image: url(../assets/icon_share.svg);
+/* card중 키비쥬얼 */
+.keyvisual {
+  background-image: url(../assets/img/card_bg_1.jpg)
 }
-.info .view {
-  width: 2.2rem;
-  margin-right: .9rem;
-  background-image: url(../assets/icon_views.svg);
-}
-.info .comments {
-  width: 2rem;
-  margin-right: 1rem;
-  background-image: url(../assets/icon_comments.svg);
+.keyvisual > a {
+  box-sizing: border-box;
+  height: 44rem;
+  padding: 0 0 2.5rem;
 }
 
-.hide {
-  display: none !important;
+.keyvisual .category {
+  margin: 0 auto;
 }
+
+.keyvisual .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  max-height: 16rem;
+  padding: 0;
+  margin: 2rem 3rem 0;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;  
+  font-size: 2.6rem;
+  line-height: 4rem;
+  letter-spacing: -0.02rem;
+}
+
+.keyvisual .description {
+  display: none;
+}
+
+.keyvisual .info {
+  bottom: 3.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 스토리 부분*/
+.storys {
+  box-sizing: border-box;
+  padding: 3.4rem 0 0;
+  margin-bottom: 2rem;
+  border: 0.1rem solid var(--light-gray-color);
+  background-color: var(--light-color);
+}
+.storys .title {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  margin-left: 2.7rem;
+  text-transform: uppercase;
+}
+.storys ol {
+  padding: 0.2rem;
+}
+.storys li:not(:first-child) {
+  border-top: 0.1rem solid var(--light-gray-color);
+}
+.storys a {
+  position: relative;
+  display: block;
+  padding: 3rem 6.7rem 3rem 5.8rem;
+}
+.storys a span {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 5.2rem;
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  color: var(--dark-color);
+}
+
+.storys a:before {
+  position: absolute;
+  left: 2.7rem;
+  top: 3rem;
+  opacity: 0.17;
+  font-size: 1.8rem;
+  line-height: 2.6rem;
+  font-weight: 500;
+}
+
+.storys li:nth-child(1) a:before {
+  content: "1";
+}
+.storys li:nth-child(2) a:before {
+  content: "2";
+}
+.storys li:nth-child(3) a:before {
+  content: "3";
+}
+.storys li:nth-child(4) a:before {
+  content: "4";
+}
+.storys li:nth-child(5) a:before {
+  content: "5";
+}
+
+
+
+
