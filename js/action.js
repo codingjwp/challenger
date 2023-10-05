@@ -54,3 +54,11 @@ window.addEventListener('click', obj => {
   const _tar = obj.target;
   menuClickFn(_tar);
 })
+
+window.addEventListener('resize',obj =>{
+  if( window.matchMedia('(min-width:1024px)').matches ){
+    _btnViewMenu.classList.remove('close');
+    _gnb.classList.remove('open');
+    _wrap.classList.remove('dimed','active');
+  }
+});
