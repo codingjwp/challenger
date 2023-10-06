@@ -7,6 +7,7 @@
   --pointer-color: #FF565C;
   --logo-color: #5d0ff8;
   --gray-color: #EBEBEB;
+  --opacity2-color: rgba(249, 250, 252, 0.2);
   --opacity5-color: rgba(255, 255, 255, 0.5);
   --opacity7-color: rgba(255, 255, 255, 0.7);
 }
@@ -17,7 +18,7 @@ html {
 }
 
 body {
-  padding: 0;
+  margin: 0;
   color: var(--footer-bgcolor);
 }
 
@@ -82,6 +83,8 @@ body {
   overflow: hidden;
 }
 
+.sitemap ul,
+.connect button > span,
 .gnb a {
   font-family: "Oswald", sans-serif;
 }
@@ -97,14 +100,15 @@ body {
   border-bottom: 0.1rem solid var(--gray-color);
   z-index: 10;
 }
-.header .inner {
+.header > .inner {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   height: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
+  display: block;
   position: relative;
   font-size: 2.4rem;
   font-weight: 600;
@@ -122,8 +126,10 @@ body {
   background-color: var(--logo-color);
 }
 
+/* overflow 빼먹음*/
 .btn_menu {
   position: relative;
+  overflow: hidden;
   width: 6.7rem;
   height: 100%;
 }
@@ -150,7 +156,7 @@ body {
 .btn_menu::before,
 .btn_menu::after,
 .btn_menu span {
-  width: 2.7rem;
+  width: 2.8rem;
   height: 0.2rem;
   background-color: var(--footer-bgcolor);
 }
@@ -199,6 +205,11 @@ body {
   transition-timing-function: ease-out;
 }
 
+.gnb ul {
+  height: 100%;
+  background-color: var(--header-bgcolor);
+}
+
 .gnb.open {
   height: 28.8rem;
 }
@@ -218,4 +229,77 @@ body {
   height: 4rem;
   padding: 0 2rem;
   color: var(--footer-bgcolor);
+}
+
+/* footer 부분 */
+.footer {
+  background-color: var(--footer-bgcolor);
+}
+.footer .inner {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 2rem 6rem;
+}
+/* copyrite */
+.footer .copyrite .logo {
+  display: inline-flex;
+  margin: 0 auto 0.7rem 0;
+  color: var(--opacity2-color);
+}
+.footer .copyrite p {
+  margin: 1rem auto 0;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  color: var(--opacity7-color);
+}
+/* sitemap 부분 */
+.footer .sitemap {
+  width: 100%;
+  order: 3;
+  margin-top: 4rem;
+}
+.footer .sitemap ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  text-transform: uppercase;
+}
+.footer .sitemap li {
+  width: 50%;
+  margin-bottom: 2.5rem;
+}
+.footer .sitemap li a {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.175rem;
+  color: var(--header-bgcolor);
+}
+/* connect 부분*/
+
+.connect {
+  margin-top: 2rem;
+}
+
+.connect button {
+  width: 12rem;
+  height: 3.5rem;
+  background-color: var(--pointer-color);
+}
+
+.connect form {
+  display: flex;
+  align-items: center;
+}
+
+.connect input {
+  width: 18rem;
+  height: 3.5rem;
+  background-color: var(--header-bgcolor);
+}
+
+.connect button > span {
+  font-size: 1.2rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  color: var(--header-bgcolor);
 }
