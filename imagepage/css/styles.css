@@ -1,0 +1,221 @@
+@charset 'utf-7';
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+  --header-bgcolor: #FFFFFF;
+  --footer-bgcolor: #1D1F24;
+  --pointer-color: #FF565C;
+  --logo-color: #5d0ff8;
+  --gray-color: #EBEBEB;
+  --opacity5-color: rgba(255, 255, 255, 0.5);
+  --opacity7-color: rgba(255, 255, 255, 0.7);
+}
+
+/* reset css */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding: 0;
+  color: var(--footer-bgcolor);
+}
+
+body,
+input {
+  font-family: "Lato", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+input {
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+}
+
+
+/* 레이아웃 */
+body {
+  padding-top: 7.1rem;
+}
+.wrap {
+  min-width: 32rem;
+}
+
+/* 공통 부분 */
+.hidden_txt {
+  position: absolute;
+  height: 0;
+  width: 0;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.gnb a {
+  font-family: "Oswald", sans-serif;
+}
+
+/* header 부분 */
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 7rem;
+  background-color: var(--header-bgcolor);
+  border-bottom: 0.1rem solid var(--gray-color);
+  z-index: 10;
+}
+.header .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  position: relative;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-left: 2rem;
+  padding-right: .2rem;
+  color: var(--footer-bgcolor);
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.1rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: var(--logo-color);
+}
+
+.btn_menu {
+  position: relative;
+  width: 6.7rem;
+  height: 100%;
+}
+
+.btn_menu span {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn_menu::before,
+.btn_menu::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform margin-top;
+  transition-property: transform margin-top;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  transform: translate(-50%, -50%) rotateZ(0);
+}
+
+.btn_menu::before,
+.btn_menu::after,
+.btn_menu span {
+  width: 2.7rem;
+  height: 0.2rem;
+  background-color: var(--footer-bgcolor);
+}
+
+.btn_menu::before {
+  margin-top: -0.7rem;
+}
+.btn_menu::after {
+  margin-top: 0.7rem;
+}
+
+.btn_menu.prev_close span,
+.btn_menu.close span {
+  width: 0;
+}
+
+.btn_menu.prev_close::before, 
+.btn_menu.prev_close::after,
+.btn_menu.close::before, 
+.btn_menu.close::after {
+  margin-top: 0;
+}
+
+.btn_menu.close::before {
+  transform: translate(-50%, -50%) rotateZ(-45deg);
+}
+
+.btn_menu.close::after {
+  transform: translate(-50%, -50%) rotateZ(45deg);
+}
+.btn_menu.next_close::before, 
+.btn_menu.next_close::after {
+  transform: translate(-50%, -50%) rotateZ(0);
+}
+
+.gnb {
+  position: absolute;
+  top: 7.1rem;
+  left: 0;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  will-change: height;
+  transition-property: height;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+}
+
+.gnb.open {
+  height: 28.8rem;
+}
+
+.gnb li:not(:last-child) {
+  border-bottom: 0.1rem solid var(--gray-color);
+}
+.gnb li:last-child {
+  border-bottom: 0.3rem solid var(--gray-color);
+}
+
+.gnb a {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  height: 4rem;
+  padding: 0 2rem;
+  color: var(--footer-bgcolor);
+}
