@@ -64,11 +64,12 @@ img {
   vertical-align: top;
 }
 
-h1,
-p,
-dl,
-dd {
+h1, p, dl, dd {
   margin: 0;
+}
+strong, em {
+  display: block;
+  font-style: normal;
 }
 
 /* 레이아웃 */
@@ -96,12 +97,13 @@ body {
   background-image: url('../assets/image/card_bg_1.jpg');
 }
 
+.card .card_number,
+.card .category,
 .sitemap ul,
 .connect button > span,
 .gnb a {
   font-family: "Oswald", sans-serif;
 }
-
 
 [class^="spr_arrow_"]::after,
 [class^="spr_link_"]::before {
@@ -151,7 +153,6 @@ body {
   background-color: var(--logo-color);
 }
 
-/* overflow 빼먹음*/
 .btn_menu {
   position: relative;
   overflow: hidden;
@@ -208,7 +209,6 @@ body {
 .btn_menu.close::before {
   transform: translate(-50%, -50%) rotateZ(-45deg);
 }
-
 .btn_menu.close::after {
   transform: translate(-50%, -50%) rotateZ(45deg);
 }
@@ -296,25 +296,22 @@ body {
   overflow: hidden;
   width: 100%;
 }
-
 .slider .wrap {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  padding: 3rem 2rem;
+  justify-content: center;
 }
-
 .slider .wrap a {
   flex: 0 0 calc(100% - 4rem);
   max-width: 100%;
-  padding: 3rem 2rem;
 }
-
 .slider .wrap img {
   width: 100%;
   height: 24.8rem;
   object-fit: cover;
   object-position: center;
 }
-
 .slider .btn_arrow {
   position: absolute;
   top: 50%;
@@ -330,7 +327,6 @@ body {
 .slider .btn_arrow.right {
   right: 0.27rem;
 }
-
 .slider button::after {
   content: '';
   display: block;
@@ -346,6 +342,78 @@ body {
 }
 .slider .left.spr_arrow_icon::after {
   background-position: 0 -2.7rem;
+}
+
+/* card group 부분*/
+.card_group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto 10rem 2rem
+}
+
+.card {
+  margin-right: 1rem;
+}
+
+.card .card_number,
+.card .category,
+.card .img_cover {
+  margin-bottom: 1rem;
+}
+
+.card .card_number,
+.card .category {
+  font-size: 1.4rem;
+  letter-spacing: 0.175rem;
+}
+.card .card_number {
+  color: var(--opacity5-color);
+}
+.card .category {
+  color: var(--pointer-color);
+}
+.card .description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  color: var(--header-bgcolor);
+}
+
+.card a:hover .description,
+.card a:focus .description {
+  text-decoration: underline;
+}
+
+.card:last-child {
+  display: none;
+}
+
+.card a {
+  overflow: hidden;
+}
+
+.card .img_cover {
+  position: relative;
+}
+.card .img_cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.card a img {
+  width: 100%;
+  height: 4.5rem;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 /* footer 부분 */
