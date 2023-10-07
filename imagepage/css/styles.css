@@ -60,10 +60,16 @@ li {
   text-transform: uppercase;
 }
 
-h1 {
-  margin: 0;
+img {
+  vertical-align: top;
 }
 
+h1,
+p,
+dl,
+dd {
+  margin: 0;
+}
 
 /* 레이아웃 */
 body {
@@ -82,11 +88,30 @@ body {
   line-height: 0;
   overflow: hidden;
 }
+.hide {
+  display: none;
+}
+
+.card_img_1 {
+  background-image: url('../assets/image/card_bg_1.jpg');
+}
 
 .sitemap ul,
 .connect button > span,
 .gnb a {
   font-family: "Oswald", sans-serif;
+}
+
+
+[class^="spr_arrow_"]::after,
+[class^="spr_link_"]::before {
+  content: "";
+  display: block;
+}
+.spr_arrow_icon::after,
+.spr_link_icon::before {
+  background: url(../assets/image/sprite.png) no-repeat;
+  background-size: 2.2rem 17.4rem;
 }
 
 /* header 부분 */
@@ -231,6 +256,98 @@ body {
   color: var(--footer-bgcolor);
 }
 
+/* main 부분 */
+
+.container {
+  position: relative;
+}
+
+.container::before,
+.container::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container::before {
+  background-image: url('../assets/image/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  filter: blur(.5rem);
+  opacity: 0.3;
+  z-index: -2;
+}
+.container::after {
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: -1;
+}
+.container .inner {
+  display: flex;
+  flex-direction: column;
+}
+
+/*슬라이드 부분*/
+.slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider .wrap {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider .wrap a {
+  flex: 0 0 calc(100% - 4rem);
+  max-width: 100%;
+  padding: 3rem 2rem;
+}
+
+.slider .wrap img {
+  width: 100%;
+  height: 24.8rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.slider .btn_arrow {
+  position: absolute;
+  top: 50%;
+  width: 3rem;
+  height: 15rem;
+  z-index: 9;
+  background-color: var(--pointer-color);
+  transform: translateY(-50%);
+}
+.slider .btn_arrow.left {
+  left: 0rem;
+}
+.slider .btn_arrow.right {
+  right: 0.27rem;
+}
+
+.slider button::after {
+  content: '';
+  display: block;
+  width: 2.4rem;
+  height: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%, -50%);
+}
+.slider .right.spr_arrow_icon::after {
+  background-position: 0 0;
+}
+.slider .left.spr_arrow_icon::after {
+  background-position: 0 -2.7rem;
+}
+
 /* footer 부분 */
 .footer {
   background-color: var(--footer-bgcolor);
@@ -241,13 +358,15 @@ body {
   padding: 4rem 2rem 6rem;
 }
 /* copyrite */
+.footer .copyrite {
+  margin-bottom: 2rem;
+}
 .footer .copyrite .logo {
   display: inline-flex;
   margin: 0 auto 0.7rem 0;
   color: var(--opacity2-color);
 }
 .footer .copyrite p {
-  margin: 1rem auto 0;
   font-size: 1.4rem;
   line-height: 1.8rem;
   color: var(--opacity7-color);
@@ -256,7 +375,6 @@ body {
 .footer .sitemap {
   width: 100%;
   order: 3;
-  margin-top: 4rem;
 }
 .footer .sitemap ul {
   display: flex;
@@ -264,9 +382,9 @@ body {
   width: 100%;
   text-transform: uppercase;
 }
-.footer .sitemap li {
+.footer .sitemap li:not(:last-child) {
   width: 50%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.2rem;
 }
 .footer .sitemap li a {
   font-size: 1.4rem;
@@ -276,30 +394,84 @@ body {
 }
 /* connect 부분*/
 
-.connect {
-  margin-top: 2rem;
+.footer .connect {
+  margin-bottom: 2rem;
 }
 
-.connect button {
+.footer .connect button {
   width: 12rem;
   height: 3.5rem;
   background-color: var(--pointer-color);
 }
 
-.connect form {
+.footer .connect form {
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
-.connect input {
+.footer .connect input {
   width: 18rem;
   height: 3.5rem;
   background-color: var(--header-bgcolor);
 }
 
-.connect button > span {
+.footer .connect button > span {
   font-size: 1.2rem;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   color: var(--header-bgcolor);
+}
+
+.footer .connect dl {
+  display: flex;
+  align-items: center;
+}
+
+.footer .connect dt {
+  font-size: 1.4rem;
+  margin-right: 2rem;
+  line-height: 2.2rem;
+  color: var(--opacity7-color);
+}
+.footer .connect dt::after {
+  content: " : ";
+}
+
+.footer .connect a {
+  display: block;
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.footer .connect a::before {
+  content: '';
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-position-x: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+.footer .connect a:hover::before,
+.footer .connect a:focus:before {
+  opacity: 0.7;
+}
+
+.footer .connect .facebook::before {
+  background-position-y: -5.6rem;
+}
+
+.footer .connect .instagram::before {
+  background-position-y: -9.2rem;
+}
+.footer .connect .pinterest::before {
+  background-position-y: -12.6rem;
+}
+.footer .connect .twitter::before {
+  background-position-y: -15.8rem;
 }
