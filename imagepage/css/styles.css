@@ -420,10 +420,6 @@ body {
   text-decoration: underline;
 }
 
-.card:last-child {
-  display: none;
-}
-
 .card a {
   overflow: hidden;
 }
@@ -605,18 +601,12 @@ body {
 
   /* 카드 부분*/
   .card_group {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    grid-template-columns: repeat(3, 1fr);
     margin: 0 auto 13rem 2rem;
   }
 
   .card {
     margin-right: 2rem;
-  }
-
-  .card:last-child {
-    display: block;
   }
 
   /* footer inner */
