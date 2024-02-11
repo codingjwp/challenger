@@ -18,7 +18,7 @@ module.exports = {
   overrides: [ // 별도의 폴더나 파일등에만 규칙을 지정하고 싶을때 사용
     {
       files: ['**/__tests__/**/*. [jt]s? (x)', '**/? (*.)+ (spec|test). [jt]s? (x)'], // __test__ 폴더와 spec, test 가 존재하는 파일만
-      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'] // 해당 규칙을 적요
+      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],// 해당 규칙을 적용
     }
   ],
 }
