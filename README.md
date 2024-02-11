@@ -1,5 +1,25 @@
 # Challenger
 
+## 만들 페이지 및 컴포넌트
+
+### 페이지
+
+ScrollMainPage : 메인으로 스크롤로 작동하는 페이지 3장 정도 생각중
+ChellgePage : Challenger 리스트, 성공, 실패, 생성, 수정,
+Dashboard : 도전한 챌린지 수량, 시간, 실패한 이유 
+Notfound: 빈공간
+
+### 컴포넌트
+
+Header
+Navigation
+Tabs
+Button
+Input
+Modal
+
+
+
 ## prettier
 
 ```bash
