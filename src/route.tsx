@@ -1,5 +1,6 @@
 import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
+import ScrollView from './pages/ScrollView';
 
 const routerConfig = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ const routerConfig = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>main</div>,
+        element: <ScrollView />,
       },
       {
         path: 'challenge',
