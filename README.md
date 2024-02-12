@@ -31,6 +31,23 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 `@testing-library/react-hooks`는 react 18버전 부터 `@testing-library/react`에 포함되어 추가 안했습니다.
 
 ```bash
-yarn add -D jest ts-jest @types/jest
+yarn add -D jest ts-jest @types/jest 
 yarn add -D @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+```
+ Validation Error:
+
+  Test environment jest-environment-jsdom cannot be found. Make sure the testEnvironment configuration option points to an existing node module.
+
+  Configuration Documentation:
+  https://jestjs.io/docs/configuration
+
+
+As of Jest 28 "jest-environment-jsdom" is no longer shipped by default, make sure to install it separately.
+error Command failed with exit code 1.
+```
+
+```bash
+yarn add -D jest-environment-jsdom
 ```

@@ -1,7 +1,7 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
 
-const route = createBrowserRouter([
+const routerConfig = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
@@ -17,14 +17,10 @@ const route = createBrowserRouter([
       },
       {
         path: 'dashboard',
-        element: <div>dashboard</div>,
+        element: <div>Dashboard page</div>,
       },
     ],
   },
 ]);
 
-const Router = () => {
-  return <RouterProvider router={route} />;
-};
-
-export default Router;
+export default routerConfig;

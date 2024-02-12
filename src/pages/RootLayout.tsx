@@ -3,10 +3,12 @@ import Header from '../components/Header';
 
 const RootLayout = () => {
   return (
-    <main>
+    <>
       <Header title='Challenger' />
-      <Outlet />
-    </main>
+      <main>
+        <Outlet />
+      </main>
+    </>
   );
 };
 
