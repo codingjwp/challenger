@@ -1,6 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
 import ScrollView from './pages/ScrollView';
+import Login from './pages/Login';
 
 const routerConfig = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <div>Login Page</div>,
+        element: <Login />,
       },
       {
         path: 'challenge',
