@@ -1,7 +1,13 @@
 import {VIEW_INFO_DATA} from '../util/viewData';
 import ScrollViewItem from '../components/ScrollViewItem';
+import {useNavigate} from 'react-router-dom';
 
 const ScrollView = () => {
+  const naviate = useNavigate();
+
+  const handleClickMovePath = () => {
+    naviate('login');
+  };
   return (
     <main className='h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory'>
       {VIEW_INFO_DATA.map((item) => {
@@ -23,6 +29,7 @@ const ScrollView = () => {
             siAlt={item.siDescription}
             viewContent={item.viewContent}
             className={classNames}
+            onMovePath={handleClickMovePath}
           />
         );
       })}

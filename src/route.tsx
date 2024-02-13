@@ -13,6 +13,10 @@ const routerConfig = createBrowserRouter([
         element: <ScrollView />,
       },
       {
+        path: 'login',
+        element: <div>Login Page</div>,
+      },
+      {
         path: 'challenge',
         element: <div>challenge</div>,
       },

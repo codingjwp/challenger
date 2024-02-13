@@ -8,6 +8,7 @@ type ScrollViewItemProps = {
   siAlt: string;
   className?: string;
   viewContent: string;
+  onMovePath: () => void;
 };
 
 const ScrollViewItem = ({
@@ -18,16 +19,18 @@ const ScrollViewItem = ({
   siAlt,
   className,
   viewContent,
+  onMovePath,
 }: ScrollViewItemProps) => {
   const siImgStyle = 'absolute z-1' + (className ? className : '');
 
   return (
     <section className='relative h-screen snap-center'>
       <div
-        className={`absolute top-20 z-20 text-center w-full ${viewId === 'i2' ? 'text-white' : 'text-black'}`}
+        className={`absolute top-20 z-[1] text-center w-full ${viewId === 'i2' ? 'text-white' : 'text-black'}`}
       >
         <h2 className='font-sans text-[44px] font-bold'>{viewContent}</h2>
         <Button
+          onClick={onMovePath}
           mode='text'
           className='uppercase tracking-widest text-3xl hover:text-red-600 hover:underline hover:underline-offset-[10px]'
         >
