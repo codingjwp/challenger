@@ -1,7 +1,7 @@
-import Header from '../components/Header';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {createMemoryRouter, Outlet, RouterProvider} from 'react-router-dom';
+import {createMemoryRouter, RouterProvider} from 'react-router-dom';
+import {exampleRouter} from './exampleRouter';
 
 /**
  * describe 테스트 환경 그룹
@@ -11,33 +11,9 @@ import {createMemoryRouter, Outlet, RouterProvider} from 'react-router-dom';
  * 3. link로 Dashboard 클릭 시 경로 /dashboard 이동
  */
 describe('Header 컴포넌트', () => {
-  const routerConfig = (title: string, path = '/') => {
-    return [
-      {
-        path: path,
-        element: (
-          <div>
-            <Header title={title} />
-            <Outlet />
-          </div>
-        ),
-        children: [
-          {
-            index: true,
-            element: <div>Main Page</div>,
-          },
-          {
-            path: 'dashboard',
-            element: <div>Dashboard page</div>,
-          },
-        ],
-      },
-    ];
-  };
-
   test('Challenger 타이틀 표시', () => {
-    const headerRouter = createMemoryRouter(routerConfig('Challenger'), {
-      initialEntries: ['/'],
+    const headerRouter = createMemoryRouter(exampleRouter, {
+      initialEntries: ['/challenge'],
     });
     render(<RouterProvider router={headerRouter} />);
 
@@ -45,23 +21,23 @@ describe('Header 컴포넌트', () => {
     expect(titleText).toBeInTheDocument();
   });
 
-  test('New로 입력 Challenger로 찾을시 존재하지 않는지 여부 판단', () => {
-    const headerRouter = createMemoryRouter(routerConfig('New'), {
-      initialEntries: ['/'],
+  test('Challenger로 입력 New로 찾을시 존재하지 않는지 여부 판단', () => {
+    const headerRouter = createMemoryRouter(exampleRouter, {
+      initialEntries: ['/challenge'],
     });
     render(<RouterProvider router={headerRouter} />);
 
-    const titleText = screen.queryByText('Challenger');
+    const titleText = screen.queryByText('New');
     expect(titleText).toBeNull();
   });
 
   test('Link DashBoard 클릭 시 경로 dashboard 이동', async () => {
     const user = userEvent.setup();
-    const headerRouter = createMemoryRouter(routerConfig('Challenger'), {
-      initialEntries: ['/'],
+    const headerRouter = createMemoryRouter(exampleRouter, {
+      initialEntries: ['/challenge'],
     });
     render(<RouterProvider router={headerRouter} />);
-    const mainElement = screen.getByText(/main page/i);
+    const mainElement = screen.getByText(/challenge page/i);
     expect(mainElement).toBeInTheDocument();
 
     const linkElement = screen.getByText('DashBoard');
