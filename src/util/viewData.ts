@@ -5,13 +5,14 @@ import silhouetteMoney from '../assets/silhouette_money.png';
 import silhouetteBook from '../assets/silhouette_book.png';
 import silhouetteExercise from '../assets/silhouette_exercise.png';
 
-export const IMAGE_INFO_DATA = [
+export const VIEW_INFO_DATA = [
   {
     id: 'i1',
     bgImgSrc: backgroundExercise,
     bgDescription: '운동 관련 배경 이미지',
     siImgSrc: silhouetteExercise,
     siDescription: '운동하는 사람 실루엣',
+    viewContent: '도전할 준비가 되셨나요?',
   },
   {
     id: 'i2',
@@ -19,6 +20,7 @@ export const IMAGE_INFO_DATA = [
     bgDescription: '독서 관련 배경 이미지',
     siImgSrc: silhouetteBook,
     siDescription: '독서하는 사람 실루엣',
+    viewContent: '미래를 대비하실 준비가 되어 계신가요?',
   },
   {
     id: 'i3',
@@ -26,5 +28,6 @@ export const IMAGE_INFO_DATA = [
     bgDescription: '투자 관련 배경 이미지',
     siImgSrc: silhouetteMoney,
     siDescription: '돈을 든 사람 실루엣',
+    viewContent: '앞으로 나아가기 위한 준비를 마치셨나요?',
   },
 ];

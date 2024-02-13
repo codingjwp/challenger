@@ -6,9 +6,7 @@ const RootLayout = () => {
   return (
     <>
       {location.pathname !== '/' && <Header title='Challenger' />}
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </>
   );
 };

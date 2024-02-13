@@ -1,23 +1,41 @@
+import Button from './Button';
+
 type ScrollViewItemProps = {
+  viewId: string;
   bgSrc: string;
   bgAlt: string;
   siSrc: string;
   siAlt: string;
   className?: string;
+  viewContent: string;
 };
 
 const ScrollViewItem = ({
+  viewId,
   bgSrc,
   bgAlt,
   siSrc,
   siAlt,
   className,
+  viewContent,
 }: ScrollViewItemProps) => {
   const siImgStyle = 'absolute z-1' + (className ? className : '');
+
   return (
-    <section className='relative h-screen'>
+    <section className='relative h-screen snap-center'>
+      <div
+        className={`absolute top-20 z-20 text-center w-full ${viewId === 'i2' ? 'text-white' : 'text-black'}`}
+      >
+        <h2 className='font-sans text-[44px] font-bold'>{viewContent}</h2>
+        <Button
+          mode='text'
+          className='uppercase tracking-widest text-3xl hover:text-red-600 hover:underline hover:underline-offset-[10px]'
+        >
+          challenge
+        </Button>
+      </div>
       <img
-        className='absolute top-0 left-0 w-full h-full object-fill'
+        className='absolute top-0 left-0 w-full h-full object-cover'
         src={bgSrc}
         alt={bgAlt}
       />
