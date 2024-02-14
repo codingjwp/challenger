@@ -59,7 +59,7 @@ const Login = () => {
             </p>
           )}
           <div className='flex justify-end mt-4'>
-            <Button type='button' mode='fill'>
+            <Button type='submit' mode='fill'>
               등 록
             </Button>
           </div>

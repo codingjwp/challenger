@@ -2,6 +2,7 @@ import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
 import ScrollView, {loader as viewLoader} from './pages/ScrollView';
 import Login, {loader as loginLoader} from './pages/Login';
+import Challenge from './pages/Challenge';
 
 const routerConfig = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: 'challenge',
-        element: <div>challenge</div>,
+        element: <Challenge />,
       },
       {
         path: 'dashboard',

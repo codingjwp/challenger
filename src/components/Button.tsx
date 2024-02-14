@@ -1,15 +1,18 @@
 import {ButtonHTMLAttributes, FC} from 'react';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  mode: 'text' | 'fill';
+  mode: 'text' | 'fill' | 'tab';
 };
 
 const Button: FC<ButtonProps> = ({className, children, mode, ...props}) => {
-  let btnStyle = 'p-2 rounded' + (className ? ' ' + className : '');
+  let btnStyle = 'p-2' + (className ? ' ' + className : '');
   if (mode === 'fill') {
-    btnStyle += ' bg-red-500 hover:bg-red-600';
+    btnStyle += ' rounded bg-red-500 hover:bg-red-600';
+  } else if (mode === 'text') {
+    btnStyle += ' rounded hover:decoration-red-600';
   } else {
-    btnStyle += ' hover:decoration-red-600';
+    btnStyle +=
+      ' flex justify-center items-center w-full gap-2 tracking-widest bg-red-100';
   }
 
   return (

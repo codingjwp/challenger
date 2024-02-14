@@ -1,4 +1,5 @@
 import {Link, useLocation} from 'react-router-dom';
+import {LINK_PATH} from '../util/viewData';
 import Button from './Button';
 
 type HeaderProps = {
@@ -18,15 +19,19 @@ export default function Header({title}: HeaderProps) {
       </h1>
       {params.pathname !== '/login' && (
         <ul className='flex items-center gap-1'>
-          <li className='h-12'>
-            <Link
-              role='button'
-              className='h-full flex items-center hover:underline hover:decoration-red-600 px-2 rounded tracking-wider'
-              to='dashboard'
-            >
-              DashBoard
-            </Link>
-          </li>
+          {LINK_PATH.map((item) => {
+            return (
+              <li key={item.path} className='h-12'>
+                <Link
+                  role='button'
+                  className='h-full flex items-center hover:underline hover:decoration-red-600 px-2 rounded tracking-wider'
+                  to={item.path}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
           <li className='h-12'>
             <Button mode='fill' className='h-full tracking-wider'>
               Logout
