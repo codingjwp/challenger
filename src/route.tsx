@@ -1,7 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
-import ScrollView from './pages/ScrollView';
-import Login from './pages/Login';
+import ScrollView, {loader as viewLoader} from './pages/ScrollView';
+import Login, {loader as loginLoader} from './pages/Login';
 
 const routerConfig = createBrowserRouter([
   {
@@ -12,10 +12,12 @@ const routerConfig = createBrowserRouter([
       {
         index: true,
         element: <ScrollView />,
+        loader: viewLoader,
       },
       {
         path: 'login',
         element: <Login />,
+        loader: loginLoader,
       },
       {
         path: 'challenge',

@@ -1,6 +1,7 @@
 import {VIEW_INFO_DATA} from '../util/viewData';
 import ScrollViewItem from '../components/ScrollViewItem';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, redirect} from 'react-router-dom';
+import {autoLogout} from '../util/login';
 
 const ScrollView = () => {
   const naviate = useNavigate();
@@ -38,3 +39,12 @@ const ScrollView = () => {
 };
 
 export default ScrollView;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const loader = () => {
+  const isLogin = autoLogout();
+  if (!isLogin) {
+    return null;
+  }
+  return redirect('/challenge');
+};
