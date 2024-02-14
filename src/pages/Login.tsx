@@ -2,6 +2,7 @@ import {FormEvent, useRef, useState} from 'react';
 import Button from '../components/Button';
 import {autoLogout, setLogin, requiredLoginCheck} from '../util/login';
 import {redirect, useNavigate} from 'react-router-dom';
+import Input from '../components/Input';
 
 const Login = () => {
   const nickRef = useRef<HTMLInputElement>(null);
@@ -43,18 +44,14 @@ const Login = () => {
         </h2>
         <p className='py-4'>닉네임을 입력해 주세요.</p>
         <form onSubmit={handleLogin}>
-          <label className='sr-only' htmlFor='nickname'>
-            닉네임
-          </label>
-          <input
-            id='nickname'
-            name='nickname'
-            ref={nickRef}
-            className='w-full py-2 rounded-md px-2'
-            autoFocus
+          <Input
             type='text'
+            ref={nickRef}
+            id='nickname'
+            content='닉네임'
+            autoFocus
+            className={`w-full py-2 rounded-md px-2 ${errorMsg !== '' && 'border-2 border-red-500'}`}
             onBlur={handleRequiredBlur}
-            placeholder='닉네임'
           />
           {errorMsg !== '' && (
             <p className='text-sm text-start text-red-500 py-1 font-bold'>
