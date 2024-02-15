@@ -7,9 +7,10 @@
   "author": "codingjwp <codingjwp@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "json-server --watch db.json --port 8080"
+    "start": "json-server -s backend --watch db.json --port 8080"
   },
-  "devDependencies": {
-    "json-server": "1.0.0-alpha.23"
+  "dependencies": {
+    "json-server": "1.0.0-alpha.23",
+    "lowdb": "^7.0.1"
   }
 }
