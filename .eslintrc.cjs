@@ -6,6 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended', // 타입스크립트 추천 룰셋
     'plugin:react-hooks/recommended', // 리액트 훅 추천 룰셋
     'plugin:prettier/recommended', // eslint에 prettier 추가 및 충돌 규칙 비활성화 // prettier/prettier 자동 적용
+    'plugin:@tanstack/eslint-plugin-query/recommended', // react query 기본 규칙 활성화
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'], // 직접 규칙을 적용할 경우 사용
