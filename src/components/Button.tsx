@@ -7,9 +7,10 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 const Button: FC<ButtonProps> = ({className, children, mode, ...props}) => {
   let btnStyle = 'p-2' + (className ? ' ' + className : '');
   if (mode === 'fill') {
-    btnStyle += ' rounded bg-red-500 hover:bg-red-600';
+    btnStyle += ' rounded';
   } else if (mode === 'text') {
-    btnStyle += ' rounded hover:decoration-red-600';
+    btnStyle +=
+      ' rounded hover:text-red-600 hover:underline hover:decoration-red-600 hover:underline-offset-4';
   } else {
     btnStyle +=
       ' flex justify-center items-center w-full gap-2 tracking-widest bg-red-100';

@@ -1,13 +1,13 @@
 import {VIEW_INFO_DATA} from '../util/viewData';
 import ScrollViewItem from '../components/ScrollViewItem';
 import {useNavigate, redirect} from 'react-router-dom';
-import {autoLogout} from '../util/login';
+import {limitCheckLogin} from '../util/login';
 
 const ScrollView = () => {
   const naviate = useNavigate();
 
   const handleClickMovePath = () => {
-    naviate('login');
+    naviate('signin');
   };
   return (
     <main className='h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory'>
@@ -42,9 +42,7 @@ export default ScrollView;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader = () => {
-  const isLogin = autoLogout();
-  if (!isLogin) {
-    return null;
-  }
-  return redirect('/challenge');
+  const path = limitCheckLogin();
+  if (path) return redirect(path);
+  return path;
 };

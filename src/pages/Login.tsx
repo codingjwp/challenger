@@ -1,70 +1,127 @@
-import {FormEvent, useRef, useState} from 'react';
-import Button from '../components/Button';
-import {autoLogout, setLogin, requiredLoginCheck} from '../util/login';
-import {redirect, useNavigate} from 'react-router-dom';
+import {FormEvent} from 'react';
+import {redirect, useLocation, useNavigate} from 'react-router-dom';
+import {useMutation} from '@tanstack/react-query';
+import {motion} from 'framer-motion';
+
 import Input from '../components/Input';
+import Button from '../components/Button';
+import {LoadingSvg} from '../components/SvgItem';
+
+import {fetchSignupOrSignin, queryClient} from '../util/http';
+import {setWebStorage, limitCheckLogin} from '../util/login';
+import {ReturnType} from 'GlobalCommonTypes';
+
+type InputGroupsProps = {
+  isSignup: boolean;
+};
+
+const InputGroups = ({isSignup}: InputGroupsProps) => {
+  return (
+    <>
+      <Input
+        key={`${isSignup}`}
+        type='text'
+        id='nick'
+        autoFocus
+        content='닉네임'
+        className={`w-full py-2 rounded-md px-2 mb-4`}
+      />
+      <Input
+        type='password'
+        id='password'
+        content='비밀번호'
+        className={`w-full py-2 rounded-md px-2 mb-4`}
+      />
+      {isSignup && (
+        <>
+          <Input
+            type='password'
+            id='confirm'
+            content='비밀번호 재확인'
+            className={`w-full py-2 rounded-md px-2 mb-4`}
+          />
+        </>
+      )}
+    </>
+  );
+};
 
 const Login = () => {
-  const nickRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
+  const isSignup = location.pathname === '/signup';
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState('');
+  const {mutate, isPending, reset, isError, error} = useMutation({
+    mutationFn: fetchSignupOrSignin,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({queryKey: ['challenge']});
+      const path = isSignup ? '/signin' : '/challenge';
+      if (!isSignup) {
+        const {userId, limitData} = data as ReturnType;
+        setWebStorage(userId, limitData);
+      }
+      navigate(path);
+    },
+  });
 
-  const handleLogin = (event: FormEvent) => {
+  const handleSubmitSigninToSignUp = (event: FormEvent) => {
     event.preventDefault();
-    const nick = nickRef.current?.value;
-    if (nick === '' || !nick) {
-      return;
-    }
-    const {error, message} = setLogin(nick);
-    if (error) {
-      setErrorMsg(message);
-      return;
-    }
-    navigate('/challenge');
+    const formData = new FormData(event.target as HTMLFormElement);
+    const {nick, password, confirm} = Object.fromEntries(formData);
+    const path = location.pathname;
+    const body = {
+      nick: nick as string,
+      password: password as string,
+      confirm: confirm as string,
+    };
+    (event.target as HTMLFormElement).reset();
+    mutate({path, body});
   };
 
-  const handleRequiredBlur = () => {
-    const nick = nickRef.current?.value;
-    if (!nick || nick === '') {
-      setErrorMsg('');
-      return;
-    }
-    const check = requiredLoginCheck(nick);
-    if (!check) {
-      setErrorMsg('빈 공간과 "_"를 제외한 특수문자는 입력을 못합니다.');
-      return;
-    }
-    setErrorMsg('');
+  const handleMoveSign = () => {
+    const form = document.getElementById('login_event') as HTMLFormElement;
+    const path = isSignup ? '/signin' : '/signup';
+    form.reset();
+    reset();
+    navigate(path);
   };
   return (
     <main className='flex pt-12 h-screen'>
-      <div className='bg-rose-300 w-[30rem] p-4 font-sans border-4 border-rose-400 rounded-lg m-auto'>
+      <motion.div
+        layout
+        className='bg-rose-300 w-[30rem] p-4 font-sans border-4 border-rose-400 rounded-lg m-auto'
+      >
         <h2 className='text-2xl font-bold text-left uppercase tracking-widest'>
-          Login
+          {isSignup ? 'Signup' : 'Signin'}
         </h2>
-        <p className='py-4'>닉네임을 입력해 주세요.</p>
-        <form onSubmit={handleLogin}>
-          <Input
-            type='text'
-            ref={nickRef}
-            id='nickname'
-            content='닉네임'
-            autoFocus
-            className={`w-full py-2 rounded-md px-2 ${errorMsg !== '' && 'border-2 border-red-500'}`}
-            onBlur={handleRequiredBlur}
-          />
-          {errorMsg !== '' && (
-            <p className='text-sm text-start text-red-500 py-1 font-bold'>
-              {errorMsg}
+        <p className='py-4'>닉네임과 비밀번호를 입력해 주세요.</p>
+        <form id='login_event' onSubmit={handleSubmitSigninToSignUp}>
+          <InputGroups isSignup={isSignup} />
+          {isError && (
+            <p className='text-sm text-red-600 mb-2 font-bold'>
+              {error.message}
             </p>
           )}
-          <div className='flex justify-end mt-4'>
-            <Button type='submit' mode='fill'>
-              등 록
+          <div className='flex justify-end'>
+            <Button
+              type='button'
+              mode='text'
+              disabled={isPending}
+              onClick={handleMoveSign}
+            >
+              {isSignup ? '로그인 화면' : '회원가입'}
+            </Button>
+            <Button
+              type='submit'
+              mode='fill'
+              disabled={isPending}
+              className='flex gap-1'
+            >
+              {isPending && <LoadingSvg isAnimation={isPending} />}
+              {isSignup ? '유저 생성' : '로그인'}
             </Button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </main>
   );
 };
@@ -73,9 +130,7 @@ export default Login;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader = () => {
-  const isLogin = autoLogout();
-  if (!isLogin) {
-    return null;
-  }
-  return redirect('/challenge');
+  const path = limitCheckLogin();
+  if (path) return redirect(path);
+  return path;
 };

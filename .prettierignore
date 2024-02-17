@@ -41,5 +41,5 @@ postcss.config.js
 jest.config.js
 vite.config.ts
 yarn.lock
-package.json
+*.json
 README.md

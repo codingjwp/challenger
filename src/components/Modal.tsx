@@ -5,11 +5,15 @@ import {motion} from 'framer-motion';
 type ModalProps = {
   title: string;
   // mode: 'base' | 'error' | 'sucees';
+  className?: string;
   children?: ReactNode;
   onClose: () => void;
 };
 
-const Modal = ({title, children, onClose}: ModalProps) => {
+const Modal = ({title, className, children, onClose}: ModalProps) => {
+  const modalStyles =
+    'w-[30rem] max-w-[90%] top-[10%] p-6 rounded-md z-10' +
+    (className ? ` ${className}` : '');
   return createPortal(
     <>
       <div
@@ -17,7 +21,7 @@ const Modal = ({title, children, onClose}: ModalProps) => {
         onClick={onClose}
       ></div>
       <motion.dialog
-        className='w-[30rem] max-w-[90%] top-[10%] p-6 rounded-md z-10'
+        className={modalStyles}
         initial={{opacity: 0, y: 30}}
         animate={{opacity: 1, y: 0}}
         exit={{opacity: 0, y: 30}}

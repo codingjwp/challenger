@@ -2,13 +2,13 @@ import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
 import ScrollView, {loader as viewLoader} from './pages/ScrollView';
 import Login, {loader as loginLoader} from './pages/Login';
-import Challenge from './pages/Challenge';
+import Challenge, {loader as challengeLoader} from './pages/Challenge';
 
 const routerConfig = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <div>notfound</div>,
+    errorElement: <div>t</div>,
     children: [
       {
         index: true,
@@ -16,13 +16,19 @@ const routerConfig = createBrowserRouter([
         loader: viewLoader,
       },
       {
-        path: 'login',
+        path: 'signin',
+        element: <Login />,
+        loader: loginLoader,
+      },
+      {
+        path: 'signup',
         element: <Login />,
         loader: loginLoader,
       },
       {
         path: 'challenge',
         element: <Challenge />,
+        loader: challengeLoader,
       },
       {
         path: 'dashboard',

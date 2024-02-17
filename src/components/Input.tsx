@@ -14,7 +14,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <label className='sr-only' htmlFor={id}>
         {content}
       </label>
-      <input ref={ref} id={id} placeholder={content} {...props} />
+      <input ref={ref} id={id} name={id} placeholder={content} {...props} />
     </div>
   );
 });
