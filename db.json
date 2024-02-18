@@ -1,0 +1,86 @@
+{
+  "challengeImg": {
+    "list": [
+      {
+        "id": "challenge_img_01",
+        "imgSrc": "/assets/cooking.png",
+        "imgAlt": "A man is cooking",
+        "type": "cooking"
+      },
+      {
+        "id": "challenge_img_02",
+        "imgSrc": "/assets/exercises.jpg",
+        "imgAlt": "A woman is doing yoga",
+        "type": "exercises"
+      },
+      {
+        "id": "challenge_img_03",
+        "imgSrc": "/assets/investment.png",
+        "imgAlt": "Money and graphs with a piggy bank",
+        "type": "investment"
+      },
+      {
+        "id": "challenge_img_04",
+        "imgSrc": "/assets/pets.png",
+        "imgAlt": "Bunny holding a heart",
+        "type": "pets"
+      },
+      {
+        "id": "challenge_img_05",
+        "imgSrc": "/assets/programmers.png",
+        "imgAlt": "A man programming ",
+        "type": "programmers"
+      },
+      {
+        "id": "challenge_img_06",
+        "imgSrc": "/assets/readings.png",
+        "imgAlt": "Man reading, sitting on a book ",
+        "type": "readings"
+      },
+      {
+        "id": "challenge_img_07",
+        "imgSrc": "/assets/studys.png",
+        "imgAlt": "Study room",
+        "type": "studys"
+      }
+    ]
+  },
+  "users": {
+    "info": [
+      {
+        "userId": "7d4de011-69bf-41c3-bfe3-fec6f2169f51",
+        "nick": "nickname",
+        "password": "$2b$10$n2IhE2AWM5OnXijquyW5AeeXnJTSFLQzvWCX0ddx23pv16D4oSp9K",
+        "limitData": 1708274716085,
+        "challengeLength": 1,
+        "sucessLength": 1,
+        "failureLength": 0,
+        "posts": [
+          {
+            "postId": "473f8f84-3bc3-4956-babf-bd33991b513e",
+            "title": "!!!!!!!!!!!!!!! 도전 !!!!!!!!!!!!!!!!!!!!",
+            "imgSrc": "/assets/cooking.png",
+            "description": "요리를 해보고 돈을 아껴 보자",
+            "startDate": "2024-02-20",
+            "endDate": "2024-02-24",
+            "status": "sucess"
+          },
+          {
+            "postId": "ee07e2cc-5ae5-44a7-bc19-342f81a62156",
+            "title": "도전입니다. 도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.",
+            "imgSrc": "/assets/studys.png",
+            "description": "도전입니다.도전입니다도전입니다도전입니다도전입니다도전입니다도\n\n전입니다도전입니다도전입니다도전입니다도전입니다도전입니다도전입\n\n니다도전입니다도전입니다도전입니다도전입니다도전입니다도전입니다",
+            "startDate": "2024-02-15",
+            "endDate": "2024-02-22",
+            "status": "challenge"
+          }
+        ]
+      }
+    ]
+  },
+  "allChallenge": {
+    "challengeLength": 1,
+    "sucessLength": 1,
+    "failureLength": 0
+  }
+}
