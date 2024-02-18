@@ -74,7 +74,7 @@ const Header = ({title}: HeaderProps) => {
               <li key={item.path} className='h-12'>
                 <Link
                   role='button'
-                  className='h-full flex items-center hover:underline hover:decoration-red-600 px-2 rounded tracking-wider'
+                  className='h-full flex items-center hover:underline hover:underline-offset-2 hover:text-red-600 hover:decoration-red-600 px-2 rounded tracking-wider'
                   to={item.path}
                 >
                   {item.label}
@@ -85,10 +85,12 @@ const Header = ({title}: HeaderProps) => {
           <li className='h-12'>
             <Button
               mode='fill'
-              className='h-full tracking-wider bg-indigo-400 hover:bg-indigo-500'
+              className='h-full tracking-wider '
               onClick={handleClickModal}
             >
-              로그아웃
+              <span className='p-1 rounded-lg bg-indigo-400 hover:bg-indigo-500'>
+                로그아웃
+              </span>
             </Button>
           </li>
         </ul>

@@ -10,7 +10,7 @@ export const setWebStorage = (userId: string, limitData: number) => {
   );
 };
 
-const getWebStorage = () => {
+export const getWebStorage = () => {
   const userLimit = localStorage.getItem('user_limit');
   return userLimit ? (JSON.parse(userLimit) as ReturnType) : null;
 };
@@ -26,9 +26,10 @@ export const limitCheckLogin = (loaderPath?: string) => {
   const now = new Date().getTime();
   const diffTime = login.limitData - now;
   if (diffTime <= 0) {
+    removeWebStorage();
     return '/signin';
   }
-  return null;
+  return loaderPath ? null : '/challenge';
 };
 
 export const validationNickCheck = (nick: string) => {

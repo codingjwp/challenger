@@ -43,6 +43,7 @@ export default ScrollView;
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader = () => {
   const path = limitCheckLogin();
+  console.log('views : ', path);
   if (path) return redirect(path);
   return path;
 };

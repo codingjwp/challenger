@@ -23,6 +23,7 @@ const InputGroups = ({isSignup}: InputGroupsProps) => {
         type='text'
         id='nick'
         autoFocus
+        autoComplete='username'
         content='닉네임'
         className={`w-full py-2 rounded-md px-2 mb-4`}
       />
@@ -30,6 +31,7 @@ const InputGroups = ({isSignup}: InputGroupsProps) => {
         type='password'
         id='password'
         content='비밀번호'
+        autoComplete={`${isSignup ? 'new-password' : 'current-password'}`}
         className={`w-full py-2 rounded-md px-2 mb-4`}
       />
       {isSignup && (
@@ -38,6 +40,7 @@ const InputGroups = ({isSignup}: InputGroupsProps) => {
             type='password'
             id='confirm'
             content='비밀번호 재확인'
+            autoComplete='current-password'
             className={`w-full py-2 rounded-md px-2 mb-4`}
           />
         </>
@@ -114,7 +117,7 @@ const Login = () => {
               type='submit'
               mode='fill'
               disabled={isPending}
-              className='flex gap-1'
+              className='flex gap-1 bg-indigo-400 hover:bg-indigo-500'
             >
               {isPending && <LoadingSvg isAnimation={isPending} />}
               {isSignup ? '유저 생성' : '로그인'}
