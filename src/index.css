@@ -16,4 +16,16 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+  .link-hover-text {
+    @apply hover:underline hover:underline-offset-2 hover:text-red-600 hover:decoration-red-600 tracking-wider;
+  }
+  .svg-hover-fill {
+    @apply w-12 h-full bg-rose-500 hover:bg-rose-600;
+  }
+  .svg-hover-fill:hover > svg {
+    @apply fill-white;
+  }
+  .logout-hover-text {
+    @apply p-1 rounded-lg bg-indigo-400 hover:bg-indigo-500;
+  }
 }

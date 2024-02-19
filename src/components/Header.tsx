@@ -3,6 +3,7 @@ import {Link, useLocation} from 'react-router-dom';
 
 import CloseModal from './modals/CloseModal';
 import Button from './Button';
+import {DashboardSvg, ChallengeSvg, LogoutSvg} from '../components/SvgItem';
 
 import {LINK_PATH} from '../util/viewData';
 
@@ -37,10 +38,15 @@ const Header = ({title}: HeaderProps) => {
               <li key={item.path} className='h-12'>
                 <Link
                   role='button'
-                  className='h-full flex items-center hover:underline hover:underline-offset-2 hover:text-red-600 hover:decoration-red-600 px-2 rounded tracking-wider'
+                  className='flex m-auto justify-center items-center relative rounded svg-hover-fill'
                   to={item.path}
                 >
-                  {item.label}
+                  {item.path === 'challenge' ? (
+                    <ChallengeSvg />
+                  ) : (
+                    <DashboardSvg />
+                  )}
+                  <span className='sr-only'>{item.label}</span>
                 </Link>
               </li>
             );
@@ -48,12 +54,11 @@ const Header = ({title}: HeaderProps) => {
           <li className='h-12'>
             <Button
               mode='fill'
-              className='h-full tracking-wider '
+              className='flex justify-center items-center tracking-wider svg-hover-fill'
               onClick={handleClickModal}
             >
-              <span className='p-1 rounded-lg bg-indigo-400 hover:bg-indigo-500'>
-                로그아웃
-              </span>
+              <LogoutSvg />
+              <span className='sr-only'>로그아웃</span>
             </Button>
           </li>
         </ul>
