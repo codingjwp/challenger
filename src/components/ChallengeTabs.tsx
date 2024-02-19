@@ -8,7 +8,7 @@ type ChallengeTabsProps = {
   tabIndex: string;
   counter: {
     challengeLength: number;
-    sucessLength: number;
+    successLength: number;
     failureLength: number;
   };
   onSelect: (index: string) => void;
@@ -27,8 +27,8 @@ const ChallengeTabs = ({
         const tabCounter =
           item.id === 'challenge'
             ? counter.challengeLength
-            : item.id === 'sucess'
-              ? counter.sucessLength
+            : item.id === 'success'
+              ? counter.successLength
               : counter.failureLength;
         return (
           <TabItem

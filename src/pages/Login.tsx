@@ -56,7 +56,7 @@ const Login = () => {
   const {mutate, isPending, reset, isError, error} = useMutation({
     mutationFn: fetchSignupOrSignin,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({queryKey: ['challenge']});
+      queryClient.invalidateQueries({queryKey: ['views', 'challenge']});
       const path = isSignup ? '/signin' : '/challenge';
       if (!isSignup) {
         const {userId, limitData} = data as ReturnType;

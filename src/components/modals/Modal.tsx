@@ -12,12 +12,12 @@ type ModalProps = {
 
 const Modal = ({title, className, children, onClose}: ModalProps) => {
   const modalStyles =
-    'min-w-[23rem] top-[10%] p-6 rounded-md z-10' +
+    'min-w-[23rem] top-[8%] p-6 rounded-md z-10' +
     (className ? ` ${className}` : '');
   return createPortal(
     <>
       <div
-        className='fixed bg-black/10 top-0 left-0  w-full h-screen z-[9]'
+        className='fixed bg-black/30 top-0 left-0  w-full h-screen z-[9]'
         onClick={onClose}
       ></div>
       <motion.dialog

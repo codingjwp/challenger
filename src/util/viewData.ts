@@ -49,7 +49,7 @@ export const TAB_ITEMS = [
     label: '도전',
   },
   {
-    id: 'sucess',
+    id: 'success',
     label: '성공',
   },
   {

@@ -7,4 +7,12 @@ declare module 'GlobalCommonTypes' {
     status: number;
     message: string;
   };
+  export type PostViewTypes = {
+    postId?: string;
+    title?: string;
+    imgSrc?: string;
+    description?: string;
+    startDate?: string;
+    endDate?: string;
+  };
 }

@@ -1,24 +1,33 @@
 import {FormEvent, useState} from 'react';
-import Modal from '../components/Modal';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import Textarea from '../components/Textarea';
-import {LoadingSvg} from '../components/SvgItem';
 import {useQuery, useMutation} from '@tanstack/react-query';
+
+import Modal from './Modal';
+import Input from '../Input';
+import Button from '../Button';
+import Textarea from '../Textarea';
+import {LoadingSvg} from '../SvgItem';
+
+import {PostViewTypes} from 'GlobalCommonTypes';
+
 import {
   featchChallengeImage,
   featchEditChallenge,
   queryClient,
-} from '../util/http';
+} from '../../util/http';
 
 type ChallengeModalProps = {
   type: string;
-  onModalAction: (type: string) => void;
+  editValue?: PostViewTypes;
+  onModalAction: (type: string, editValue?: PostViewTypes) => void;
 };
 
-const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
+const ChallengeModal = ({
+  type,
+  editValue,
+  onModalAction,
+}: ChallengeModalProps) => {
   const baseStyle = 'rounded-md w-full p-2 mb-2';
-  const [imgLink, setImgLink] = useState('');
+  const [imgLink, setImgLink] = useState(editValue?.imgSrc || '');
   const {data, isPending, isError, error} = useQuery({
     queryKey: ['images'],
     queryFn: featchChallengeImage,
@@ -34,7 +43,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
   } = useMutation({
     mutationFn: featchEditChallenge,
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['challenge']});
+      queryClient.invalidateQueries({queryKey: ['views', 'challenge']});
       reset();
       onModalAction(type);
     },
@@ -42,7 +51,8 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
 
   const handleCallengeSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const path = type === 'create' ? '/challenge' : '';
+    const path =
+      type === 'create' ? '/challenge' : `/challenge/${editValue?.postId}`;
     const element = event.target as HTMLFormElement;
     const formData = new FormData(element);
     const {title, description, startDate, endDate} =
@@ -75,6 +85,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
           id='title'
           content='제목'
           required
+          defaultValue={editValue?.title}
         />
         <div className='flex flex-col gap-2 mt-2 mb-2'>
           <span className='font-bold tracking-widest'>도전일자 : </span>
@@ -85,6 +96,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
               id='startDate'
               content='시작일자'
               required
+              defaultValue={editValue?.startDate}
             />
             <Input
               className={`${baseStyle}`}
@@ -92,6 +104,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
               id='endDate'
               content='종료일자'
               required
+              defaultValue={editValue?.endDate}
             />
           </div>
         </div>
@@ -103,7 +116,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
           <div className='grid gap-2 grid-cols-4 grid-rows-2 mb-4'>
             {data?.list.map((item) => (
               <img
-                className={`m-1 w-[7.5rem] h-[5rem] rounded object-cover ${imgLink === item.imgSrc && 'border-2 border-indigo-400'}`}
+                className={`m-1 w-[7.5rem] h-[5rem] rounded object-cover ${imgLink === item.imgSrc && 'border-4 border-fuchsia-700'}`}
                 key={item.id}
                 id={item.type}
                 src={`http://localhost:8080${item.imgSrc}`}
@@ -118,6 +131,7 @@ const ChallengeModal = ({type, onModalAction}: ChallengeModalProps) => {
           id='description'
           content='설명'
           required
+          defaultValue={editValue?.description}
         />
         {isEditError && (
           <p className='text-sm text-red-600 mb-2 font-bold'>

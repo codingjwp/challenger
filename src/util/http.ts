@@ -127,15 +127,15 @@ export const featchEditChallenge = async ({path, body}: EditPostTypes) => {
 
 type GetChallengeType = {
   challengeLength: number;
-  sucessLength: number;
+  successLength: number;
   failureLength: number;
   posts: EditBodyTypes[];
 };
 
 /**
  * 챌린지 상태에 따른 목록가져오기
- * @param status 챌린지 상태 challenge, sucess, failure
- * @returns 챌릭지 갯수 및 게시글모음 challengeLength, sucessLength, failureLength, posts
+ * @param status 챌린지 상태 challenge, success, failure
+ * @returns 챌릭지 갯수 및 게시글모음 challengeLength, successLength, failureLength, posts
  */
 export const fetchGetChallenge = async (status: string) => {
   const userInfo = getWebStorage();
@@ -156,13 +156,21 @@ export const fetchGetChallenge = async (status: string) => {
   return data;
 };
 
+type PutChallengeType = {
+  postId: string;
+  status: string;
+};
+
 /**
  * 챌린지 성공, 실패 관련 fetch 함수
  * @param postId 포스터 id
  * @param status 상태값
  * @returns 성공 메세지, 에러 메세지
  */
-export const featchPutChallenge = async (postId: string, status: string) => {
+export const featchPutChallenge = async ({
+  postId,
+  status,
+}: PutChallengeType) => {
   const userInfo = getWebStorage();
   const url =
     (import.meta.env.SERVER_URL || 'http://localhost:8080') + '/challenge';
