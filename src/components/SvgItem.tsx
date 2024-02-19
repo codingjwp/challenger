@@ -35,3 +35,47 @@ export const LoadingSvg = ({isAnimation}: LoadingSvgProps) => {
     </motion.svg>
   );
 };
+
+type SvgTypes = {
+  className?: string;
+};
+
+export const ChallengeSvg = ({className}: SvgTypes) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      height='24'
+      viewBox='0 -960 960 960'
+      width='24'
+      className={className}
+    >
+      <path d='m387-412 35-114-92-74h114l36-112 36 112h114l-93 74 35 114-92-71-93 71ZM240-40v-309q-38-42-59-96t-21-115q0-134 93-227t227-93q134 0 227 93t93 227q0 61-21 115t-59 96v309l-240-80-240 80Zm240-280q100 0 170-70t70-170q0-100-70-170t-170-70q-100 0-170 70t-70 170q0 100 70 170t170 70ZM320-159l160-41 160 41v-124q-35 20-75.5 31.5T480-240q-44 0-84.5-11.5T320-283v124Zm160-62Z' />
+    </svg>
+  );
+};
+export const DashboardSvg = ({className}: SvgTypes) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      height='24'
+      viewBox='0 -960 960 960'
+      width='24'
+      className={className}
+    >
+      <path d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z' />
+    </svg>
+  );
+};
+export const LogoutSvg = ({className}: SvgTypes) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      height='24'
+      viewBox='0 -960 960 960'
+      width='24'
+      className={className}
+    >
+      <path d='M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z' />
+    </svg>
+  );
+};
