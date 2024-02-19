@@ -51,10 +51,10 @@
         "userId": "7d4de011-69bf-41c3-bfe3-fec6f2169f51",
         "nick": "nickname",
         "password": "$2b$10$n2IhE2AWM5OnXijquyW5AeeXnJTSFLQzvWCX0ddx23pv16D4oSp9K",
-        "limitData": 1708274716085,
-        "challengeLength": 1,
-        "sucessLength": 1,
-        "failureLength": 0,
+        "limitData": 1708377031747,
+        "challengeLength": 2,
+        "successLength": 1,
+        "failureLength": 1,
         "posts": [
           {
             "postId": "473f8f84-3bc3-4956-babf-bd33991b513e",
@@ -63,15 +63,33 @@
             "description": "요리를 해보고 돈을 아껴 보자",
             "startDate": "2024-02-20",
             "endDate": "2024-02-24",
-            "status": "sucess"
+            "status": "success"
           },
           {
             "postId": "ee07e2cc-5ae5-44a7-bc19-342f81a62156",
-            "title": "도전입니다. 도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.도전입니다.",
-            "imgSrc": "/assets/studys.png",
-            "description": "도전입니다.도전입니다도전입니다도전입니다도전입니다도전입니다도\n\n전입니다도전입니다도전입니다도전입니다도전입니다도전입니다도전입\n\n니다도전입니다도전입니다도전입니다도전입니다도전입니다도전입니다",
+            "title": "도전입니다. ",
+            "imgSrc": "/assets/pets.png",
+            "description": "도전입니다.",
             "startDate": "2024-02-15",
             "endDate": "2024-02-22",
+            "status": "challenge"
+          },
+          {
+            "postId": "27293f02-caa9-484d-98d7-27980b3e63fc",
+            "title": "tet",
+            "imgSrc": "/assets/exercises.jpg",
+            "description": "tet",
+            "startDate": "2024-02-21",
+            "endDate": "2024-02-29",
+            "status": "failure"
+          },
+          {
+            "postId": "94d06e54-8256-41ff-b4f5-e790fae24c26",
+            "title": "testtest",
+            "imgSrc": "/assets/cooking.png",
+            "description": "atestesteateas",
+            "startDate": "2024-02-07",
+            "endDate": "2024-02-18",
             "status": "challenge"
           }
         ]
@@ -79,8 +97,8 @@
     ]
   },
   "allChallenge": {
-    "challengeLength": 1,
-    "sucessLength": 1,
-    "failureLength": 0
+    "challengeLength": 2,
+    "successLength": 1,
+    "failureLength": 1
   }
 }

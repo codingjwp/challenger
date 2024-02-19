@@ -58,7 +58,7 @@ const INITALDB = {
   },
   allChallenge: {
     challengeLength: 0,
-    sucessLength: 0,
+    successLength: 0,
     failureLength: 0,
   },
 };
@@ -138,7 +138,7 @@ server.post('/signup', async (req, res, next) => {
         password: signup.password,
         limitData: 0,
         challengeLength: 0,
-        sucessLength: 0,
+        successLength: 0,
         failureLength: 0,
         posts: [],
       })
@@ -156,14 +156,14 @@ server.get('/challenge', (req, res, next) => {
     const findedUser = users.info.find((item) => item.userId === userId);
     if (!findedUser) {
       const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const posts = findedUser.posts.filter((post) => post.status === status);
 
     res.status(200).send({
       challengeLength: findedUser.challengeLength,
-      sucessLength: findedUser.sucessLength,
+      successLength: findedUser.successLength,
       failureLength: findedUser.failureLength,
       posts: posts
     });
@@ -181,13 +181,13 @@ server.post('/challenge/:id', async (req, res, next) => {
     const findedUser = users.info.find((item) => item.userId === userId);
     if (!findedUser) {
       const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const findedPost = findedUser.posts.find((post) => post.postId === postId);
     if (!findedPost) {
       const { status, message } = errorMessage(400, "해당 챌린지를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     findedPost.title = title;
@@ -206,38 +206,39 @@ server.post('/challenge/:id', async (req, res, next) => {
 server.put('/challenge', async (req, res, next) => {
   try {
     const { userId, postId, status } = req.body;
-    const findedUser = users.info.find((item) => item.userId === userId);
+    // const findedUser = users.info.find((item) => item.userId === userId);
+    const findedUser = null;
     if (!findedUser) {
       const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const findedPost = findedUser.posts.find((post) => post.postId === postId);
     if (!findedPost) {
       const { status, message } = errorMessage(400, "해당 챌린지를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const postStatus = findedPost.status;
     if (postStatus === status) {
       const { status, message } = errorMessage(400, "동일한 챌린지 상태입니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     if (postStatus === 'challenge') {
       findedUser.challengeLength -= 1;
       allChallenge.challengeLength -= 1;
-    } else if (postStatus === 'sucess') {
-      findedUser.sucessLength -= 1;
-      allChallenge.sucessLength -= 1;
+    } else if (postStatus === 'success') {
+      findedUser.successLength -= 1;
+      allChallenge.successLength -= 1;
     } else {
       findedUser.failureLength -= 1;
       allChallenge.failureLength -= 1;
     }
 
-    if (status === 'sucess') {
-      findedUser.sucessLength += 1;
-      allChallenge.sucessLength += 1;
+    if (status === 'success') {
+      findedUser.successLength += 1;
+      allChallenge.successLength += 1;
     } else if (status === 'failure') {
       findedUser.failureLength += 1;
       allChallenge.failureLength += 1;
@@ -293,22 +294,22 @@ server.delete('/challenge/:id', async (req, res, next) => {
     const findedUser = users.info.find((item) => item.userId === userId);
     if (!findedUser) {
       const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const findedPost = findedUser.posts.find((post) => post.postId === postId);
     if (!findedPost) {
       const { status, message } = errorMessage(400, "해당 챌린지를 찾지 못했습니다.");
-      res.status(400).send(status, message);
+      res.status(400).send({ status, message });
       return;
     }
     const findedStatus = findedPost.status;
     if (findedStatus === 'challenge') {
       findedUser.challengeLength -= 1;
       allChallenge.challengeLength -= 1;
-    } else if (findedStatus === 'sucess') {
-      findedUser.sucessLength -= 1;
-      allChallenge.sucessLength -= 1;
+    } else if (findedStatus === 'success') {
+      findedUser.successLength -= 1;
+      allChallenge.successLength -= 1;
     } else {
       findedUser.failureLength -= 1;
       allChallenge.failureLength -= 1;
@@ -331,6 +332,12 @@ server.get('/v2/image', (req, res, next) => {
     next(error);
   }
 })
+
+// 404 핸들러
+server.use((req, res, next) => {
+  res.status(404).send({ status: 404, message: '요청하신 페이지를 찾을 수 없습니다.' });
+});
+
 
 // 에러 넘김 부분
 server.use((error, req, res, next) => {
