@@ -51,8 +51,8 @@
         "userId": "7d4de011-69bf-41c3-bfe3-fec6f2169f51",
         "nick": "nickname",
         "password": "$2b$10$n2IhE2AWM5OnXijquyW5AeeXnJTSFLQzvWCX0ddx23pv16D4oSp9K",
-        "limitData": 1708377031747,
-        "challengeLength": 2,
+        "limitData": 1708442443084,
+        "challengeLength": 4,
         "successLength": 1,
         "failureLength": 1,
         "posts": [
@@ -91,13 +91,31 @@
             "startDate": "2024-02-07",
             "endDate": "2024-02-18",
             "status": "challenge"
+          },
+          {
+            "postId": "be44b4fa-2ad8-42a1-acc7-44b8be55d4ef",
+            "title": "tttt",
+            "imgSrc": "/assets/readings.png",
+            "description": "tttt",
+            "startDate": "2024-02-20",
+            "endDate": "2024-02-22",
+            "status": "challenge"
+          },
+          {
+            "postId": "42866b80-f3b0-4636-903d-debb19db67fb",
+            "title": "qweqwewq",
+            "imgSrc": "/assets/cooking.png",
+            "description": "qwewqeqweqw",
+            "startDate": "2024-02-23",
+            "endDate": "2024-02-29",
+            "status": "challenge"
           }
         ]
       }
     ]
   },
   "allChallenge": {
-    "challengeLength": 2,
+    "challengeLength": 4,
     "successLength": 1,
     "failureLength": 1
   }

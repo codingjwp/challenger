@@ -333,6 +333,45 @@ server.get('/v2/image', (req, res, next) => {
   }
 })
 
+// dashboard 가져오기
+server.get('/dashboard/:id', (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const findedUser = users.info.find((item) => item.userId === userId);
+    if (!findedUser) {
+      const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
+      res.status(400).send({ status, message });
+      return;
+    }
+
+    const { list } = challengeImg;
+    const imgList = list.reduce((acc, item) => {
+      acc.push({ ...item, success: 0, failure: 0 })
+      return acc;
+    }, []);
+
+    findedUser.posts.forEach((item) => {
+      imgList.forEach((list) => {
+        if (list.imgSrc === item.imgSrc && item.status !== 'challenge') {
+          list[item.status] += 1;
+        }
+      })
+    })
+    const dashboardInfo = {
+      nick: findedUser.nick,
+      typeList: imgList,
+      lengthList: {
+        userChallengeLength: findedUser.challengeLength,
+        userSuccessLength: findedUser.successLength,
+        userFailureLength: findedUser.failureLength,
+      }
+    }
+    res.status(200).send(dashboardInfo);
+  } catch (error) {
+    next(error);
+  }
+})
+
 // 404 핸들러
 server.use((req, res, next) => {
   res.status(404).send({ status: 404, message: '요청하신 페이지를 찾을 수 없습니다.' });
@@ -345,8 +384,6 @@ server.use((error, req, res, next) => {
   const { status, message } = errorMessage((error.status || 500), (error.message || '서버 내부 오류가 발생했습니다.'));
   res.status(status).send({ status, message });
 });
-
-
 
 server.use(router);
 server.listen(8080, () => {
