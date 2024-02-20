@@ -206,8 +206,7 @@ server.post('/challenge/:id', async (req, res, next) => {
 server.put('/challenge', async (req, res, next) => {
   try {
     const { userId, postId, status } = req.body;
-    // const findedUser = users.info.find((item) => item.userId === userId);
-    const findedUser = null;
+    const findedUser = users.info.find((item) => item.userId === userId);
     if (!findedUser) {
       const { status, message } = errorMessage(400, "해당 유저를 찾지 못했습니다.");
       res.status(400).send({ status, message });
@@ -364,6 +363,10 @@ server.get('/dashboard/:id', (req, res, next) => {
         userChallengeLength: findedUser.challengeLength,
         userSuccessLength: findedUser.successLength,
         userFailureLength: findedUser.failureLength,
+        allChallengeLength: allChallenge.challengeLength,
+        allSuccessLength: allChallenge.successLength,
+        allFailureLength: allChallenge.failureLength,
+
       }
     }
     res.status(200).send(dashboardInfo);

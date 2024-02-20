@@ -51,7 +51,7 @@
         "userId": "7d4de011-69bf-41c3-bfe3-fec6f2169f51",
         "nick": "nickname",
         "password": "$2b$10$n2IhE2AWM5OnXijquyW5AeeXnJTSFLQzvWCX0ddx23pv16D4oSp9K",
-        "limitData": 1708442443084,
+        "limitData": 1708460783306,
         "challengeLength": 4,
         "successLength": 1,
         "failureLength": 1,
@@ -111,12 +111,41 @@
             "status": "challenge"
           }
         ]
+      },
+      {
+        "userId": "d0deff1d-3c67-4769-8ea8-56ac58299a73",
+        "nick": "test1",
+        "password": "$2b$10$XlDYdiHkFGRm8g4QvHt8WetGmDnLebct1udMaoFzqymHWFwF7SS4S",
+        "limitData": 1708463192991,
+        "challengeLength": 1,
+        "successLength": 0,
+        "failureLength": 1,
+        "posts": [
+          {
+            "postId": "7c959d14-41dd-4114-bf14-59ce41661af4",
+            "title": "ttttttttttttttttttttt",
+            "imgSrc": "/assets/exercises.jpg",
+            "description": "tetateatesrewrewarwe",
+            "startDate": "2024-02-22",
+            "endDate": "2024-03-02",
+            "status": "challenge"
+          },
+          {
+            "postId": "f0dbaeee-a362-47dc-9423-2385ada3e2a5",
+            "title": "asdfadsfadsfads",
+            "imgSrc": "/assets/investment.png",
+            "description": "agsfdsfasfwaefaefewafew",
+            "startDate": "2024-02-21",
+            "endDate": "2024-03-01",
+            "status": "failure"
+          }
+        ]
       }
     ]
   },
   "allChallenge": {
-    "challengeLength": 4,
+    "challengeLength": 5,
     "successLength": 1,
-    "failureLength": 1
+    "failureLength": 2
   }
 }
