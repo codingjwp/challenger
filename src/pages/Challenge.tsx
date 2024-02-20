@@ -45,7 +45,7 @@ const Challenge = () => {
     });
   };
   return (
-    <main className='pt-12'>
+    <main className='pt-12 max-w-[80rem] mx-auto'>
       {modalAction.open && (
         <ChallengeModal
           type={modalAction.type}

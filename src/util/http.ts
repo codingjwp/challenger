@@ -1,6 +1,6 @@
 import {QueryClient} from '@tanstack/react-query';
 import {getWebStorage} from './login';
-import {ReturnType, MessageType} from 'GlobalCommonTypes';
+import {ReturnType, MessageType, ImageListTypes} from 'GlobalCommonTypes';
 
 export const queryClient = new QueryClient();
 
@@ -80,13 +80,8 @@ export const fetchSignupOrSignin = async ({path, body}: SignupOrSignin) => {
   return data;
 };
 
-type ImageList = {
-  list: {
-    id: string;
-    imgSrc: string;
-    imgAlt: string;
-    type: string;
-  }[];
+type ImageGroup = {
+  list: ImageListTypes[];
 };
 
 /**
@@ -97,7 +92,7 @@ export const featchChallengeImage = async () => {
   const url = getUrl('/v2/image');
   const res = await fetch(url);
   await handleFetchError(res);
-  const data = (await res.json()) as ImageList;
+  const data = (await res.json()) as ImageGroup;
   return {list: data.list};
 };
 
@@ -203,11 +198,24 @@ export const featchDeleteChallenge = async (postId: string) => {
   return data;
 };
 
+type DashboardTypes = {
+  nick: string;
+  typeList: ImageListTypes[];
+  lengthList: {
+    userChallengeLength: number;
+    userSuccessLength: number;
+    userFailureLength: number;
+    allChallengeLength: number;
+    allSuccessLength: number;
+    allFailureLength: number;
+  };
+};
+
 export const featchGetDashboard = async () => {
   const userInfo = getWebStorage();
   const url = getUrl(`/dashboard/${userInfo!.userId}`);
   const res = await fetch(url);
   await handleFetchError(res);
-  const data = await res.json();
+  const data = (await res.json()) as DashboardTypes;
   return data;
 };

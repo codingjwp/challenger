@@ -96,7 +96,7 @@ const ChallengeView = ({
   };
 
   return (
-    <section>
+    <section className='max-w-3xl mx-auto'>
       {posts.map((post) => {
         const diffDay = diffValue('day', post);
         const diffStyle = diffValue('badgeStyle');

@@ -79,3 +79,56 @@ export const LogoutSvg = ({className}: SvgTypes) => {
     </svg>
   );
 };
+
+type DouqhuntSvgTypes = {
+  radius: number;
+  colors: string[];
+  texts: string[];
+  dataset: number[];
+};
+
+export const DouqhuntSvg = ({
+  radius,
+  colors,
+  texts,
+  dataset,
+}: DouqhuntSvgTypes) => {
+  const diameter = 2 * Math.PI * radius;
+  const total = dataset.reduce((r, v) => r + v, 0);
+  const acc = dataset.reduce(
+    (arr, v) => {
+      const last = arr[arr.length - 1];
+      return [...arr, last + v];
+    },
+    [0],
+  );
+
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 300 300'
+      width='280'
+      height='280'
+    >
+      {dataset.map((data, i) => {
+        const ratio = data / total;
+        const fillSpace = diameter * ratio;
+        const emptySpace = diameter - fillSpace;
+        const offset = (acc[i] / total) * diameter;
+        return (
+          <circle
+            key={i}
+            cx='140'
+            cy='140'
+            r={`${radius}`}
+            fill='transparent'
+            stroke={`${colors[i]}`}
+            strokeWidth='80'
+            strokeDasharray={`${fillSpace} ${emptySpace}`}
+            strokeDashoffset={`${-offset}`}
+          />
+        );
+      })}
+    </svg>
+  );
+};

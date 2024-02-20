@@ -14,6 +14,7 @@ import {
   featchEditChallenge,
   queryClient,
 } from '../../util/http';
+import ChallengeImageGroups from '../ChallengeImageGroups';
 
 type ChallengeModalProps = {
   type: string;
@@ -67,6 +68,17 @@ const ChallengeModal = ({
     mutate({path, body: newData});
   };
 
+  const handleImageSelect = (imgSrc: string) => {
+    setImgLink(imgSrc);
+  };
+  const minDay = () => {
+    const min = new Date();
+    const year = min.getFullYear();
+    const month = String(min.getMonth() + 1).padStart(2, '0');
+    const day = min.getDate();
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <Modal
       title={`${type === 'create' ? 'Create Challenge' : 'Edit Challenge'}`}
@@ -95,6 +107,7 @@ const ChallengeModal = ({
               type='date'
               id='startDate'
               content='시작일자'
+              min={minDay()}
               required
               defaultValue={editValue?.startDate}
             />
@@ -102,6 +115,7 @@ const ChallengeModal = ({
               className={`${baseStyle}`}
               type='date'
               id='endDate'
+              min={minDay()}
               content='종료일자'
               required
               defaultValue={editValue?.endDate}
@@ -113,18 +127,11 @@ const ChallengeModal = ({
             {error?.message || '이미지 로딩 중...'}
           </p>
         ) : (
-          <div className='grid gap-2 grid-cols-4 grid-rows-2 mb-4'>
-            {data?.list.map((item) => (
-              <img
-                className={`m-1 w-[7.5rem] h-[5rem] rounded object-cover ${imgLink === item.imgSrc && 'border-4 border-fuchsia-700'}`}
-                key={item.id}
-                id={item.type}
-                src={`http://localhost:8080${item.imgSrc}`}
-                alt={item.imgAlt}
-                onClick={() => setImgLink(item.imgSrc)}
-              />
-            ))}
-          </div>
+          <ChallengeImageGroups
+            list={data.list}
+            imgLink={imgLink}
+            onSelect={handleImageSelect}
+          />
         )}
         <Textarea
           className={`${baseStyle}`}
