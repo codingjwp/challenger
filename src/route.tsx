@@ -3,6 +3,7 @@ import RootLayout from './pages/RootLayout';
 import ScrollView, {loader as viewLoader} from './pages/ScrollView';
 import Login, {loader as loginLoader} from './pages/Login';
 import Challenge, {loader as challengeLoader} from './pages/Challenge';
+import Dashboard, {loader as dashboardLoader} from './pages/Dashboard';
 
 const routerConfig = createBrowserRouter([
   {
@@ -32,7 +33,8 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: 'dashboard',
-        element: <div>Dashboard page</div>,
+        element: <Dashboard />,
+        loader: dashboardLoader,
       },
     ],
   },

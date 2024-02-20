@@ -4,6 +4,49 @@ import {ReturnType, MessageType} from 'GlobalCommonTypes';
 
 export const queryClient = new QueryClient();
 
+/**
+ * url 주소 반환 함수
+ * @param path Api 경로
+ * @returns url 주소
+ */
+const getUrl = (path?: string) => {
+  const url =
+    (import.meta.env.SERVER_URL || 'http://localhost:8080') + (path || '');
+  return url;
+};
+
+/**
+ * fetch option 반환 함수
+ * @param method http method
+ * @param body 보내는 body 값
+ * @returns
+ */
+const getFetchOptions = (method: string, body: string) => {
+  const options = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body,
+  };
+  return options;
+};
+
+/**
+ * Response에서 ok가 false일 경우 에러 핸들
+ * @param res Response 값
+ */
+const handleFetchError = async (res: Response) => {
+  if (!res.ok) {
+    const info = await res.json();
+    const error: MessageType = {
+      status: info.status,
+      message: info.message,
+    };
+    throw error;
+  }
+};
+
 type SignBodyTypes = {
   nick: string;
   password: string;
@@ -22,7 +65,7 @@ type SignupOrSignin = {
  * @returns signup은 Object {status, message} signin은 Object {userId, limitData}
  */
 export const fetchSignupOrSignin = async ({path, body}: SignupOrSignin) => {
-  const url = (import.meta.env.SERVER_URL || 'http://localhost:8080') + path;
+  const url = getUrl(path);
   const bodyData: SignBodyTypes = {
     nick: body.nick,
     password: body.password,
@@ -30,21 +73,9 @@ export const fetchSignupOrSignin = async ({path, body}: SignupOrSignin) => {
   if (path === '/signup') {
     bodyData.confirm = body.confirm!;
   }
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({...bodyData}),
-  });
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
+  const options = getFetchOptions('POST', JSON.stringify({...bodyData}));
+  const res = await fetch(url, options);
+  await handleFetchError(res);
   const data = (await res.json()) as ReturnType | MessageType;
   return data;
 };
@@ -63,17 +94,9 @@ type ImageList = {
  * @returns id: id값 imgSrc: 이미지주소, imgAlt:이미지설명 type: 이미지타입
  */
 export const featchChallengeImage = async () => {
-  const url =
-    (import.meta.env.SERVER_URL || 'http://localhost:8080') + '/v2/image';
+  const url = getUrl('/v2/image');
   const res = await fetch(url);
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
+  await handleFetchError(res);
   const data = (await res.json()) as ImageList;
   return {list: data.list};
 };
@@ -99,28 +122,15 @@ type EditPostTypes = {
  * @returns status http 응답코드 message: 응답 메세지
  */
 export const featchEditChallenge = async ({path, body}: EditPostTypes) => {
-  const url = (import.meta.env.SERVER_URL || 'http://localhost:8080') + path;
+  const url = getUrl(path);
   const userInfo = getWebStorage();
   const newBody = {
     ...body,
     userId: userInfo?.userId,
   };
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-
-    body: JSON.stringify({...newBody}),
-  });
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
+  const options = getFetchOptions('POST', JSON.stringify({...newBody}));
+  const res = await fetch(url, options);
+  await handleFetchError(res);
   const data = (await res.json()) as MessageType;
   return data;
 };
@@ -139,19 +149,11 @@ type GetChallengeType = {
  */
 export const fetchGetChallenge = async (status: string) => {
   const userInfo = getWebStorage();
-  const url =
-    (import.meta.env.SERVER_URL || 'http://localhost:8080') +
-    '/challenge' +
-    `?status=${status}&userId=${userInfo?.userId}`;
+  const url = getUrl(
+    '/challenge' + `?status=${status}&userId=${userInfo?.userId}`,
+  );
   const res = await fetch(url);
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
+  await handleFetchError(res);
   const data = (await res.json()) as GetChallengeType;
   return data;
 };
@@ -172,29 +174,13 @@ export const featchPutChallenge = async ({
   status,
 }: PutChallengeType) => {
   const userInfo = getWebStorage();
-  const url =
-    (import.meta.env.SERVER_URL || 'http://localhost:8080') + '/challenge';
-  const res = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      userId: userInfo!.userId,
-      postId,
-      status,
-    }),
-  });
-
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
-
+  const url = getUrl('/challenge');
+  const options = getFetchOptions(
+    'PUT',
+    JSON.stringify({userId: userInfo!.userId, postId, status}),
+  );
+  const res = await fetch(url, options);
+  await handleFetchError(res);
   const data = (await res.json()) as MessageType;
   return data;
 };
@@ -206,29 +192,22 @@ export const featchPutChallenge = async ({
  */
 export const featchDeleteChallenge = async (postId: string) => {
   const userInfo = getWebStorage();
-  const url =
-    (import.meta.env.SERVER_URL || 'http://localhost:8080') +
-    '/challenge/' +
-    postId;
-  const res = await fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      userId: userInfo!.userId,
-    }),
-  });
-
-  if (!res.ok) {
-    const info = await res.json();
-    const error: MessageType = {
-      status: info.status,
-      message: info.message,
-    };
-    throw error;
-  }
-
+  const url = getUrl('/challenge/' + postId);
+  const options = getFetchOptions(
+    'DELETE',
+    JSON.stringify({userId: userInfo!.userId}),
+  );
+  const res = await fetch(url, options);
+  await handleFetchError(res);
   const data = (await res.json()) as MessageType;
+  return data;
+};
+
+export const featchGetDashboard = async () => {
+  const userInfo = getWebStorage();
+  const url = getUrl(`/dashboard/${userInfo!.userId}`);
+  const res = await fetch(url);
+  await handleFetchError(res);
+  const data = await res.json();
   return data;
 };
