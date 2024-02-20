@@ -205,6 +205,9 @@ type DashboardTypes = {
     userChallengeLength: number;
     userSuccessLength: number;
     userFailureLength: number;
+    allChallengeLength: number;
+    allSuccessLength: number;
+    allFailureLength: number;
   };
 };
 

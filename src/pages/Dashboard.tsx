@@ -31,32 +31,52 @@ const Dashboard = () => {
           </h2>
           <p className='font-serif'>여러분의 도전 여기에 담겨 있습니다.</p>
           <hr className='my-4 w-full h-[2px] bg-slate-400/50' />
-          <section className='grid grid-cols-3 grid-rows-2 gap-[2px] text-center font-serif font-medium mb-6'>
-            <p className='h-10 py-2 rounded bg-purple-500'>도전중인 목표</p>
-            <p className='h-10 py-2 rounded bg-teal-400'>성공한 목표</p>
-            <p className='h-10 py-2 rounded bg-rose-500'>실패한 목표</p>
-            <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
-              {data.lengthList.userChallengeLength}
-            </p>
-            <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
-              {data.lengthList.userSuccessLength}
-            </p>
-            <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
-              {data.lengthList.userFailureLength}
-            </p>
-          </section>
-          <section className='flex justify-center items-center mb-4'>
-            <DouqhuntSvg
-              radius={90}
-              colors={['#a855f7', '#2dd4bf', '#f43f5e']}
-              texts={['challenge', 'success', 'failure']}
-              dataset={[
-                data.lengthList.userChallengeLength,
-                data.lengthList.userSuccessLength,
-                data.lengthList.userFailureLength,
-              ]}
-            />
-          </section>
+          <div className='xl:grid xl:grid-cols-2 xl:items-center'>
+            <section className='grid grid-cols-3 grid-rows-2 xl:grid-rows-4 gap-0.5 xl:gap-y-2 text-center font-serif font-medium mb-6'>
+              <p className='hidden xl:block h-10 py-2 rounded bg-violet-300'>
+                전체 도전중인 목표
+              </p>
+              <p className='hidden xl:block h-10 py-2 rounded bg-teal-300'>
+                전체 성공한 목표
+              </p>
+              <p className='hidden xl:block h-10 py-2 rounded bg-rose-300'>
+                전체 실패한 목표
+              </p>
+              <p className='hidden xl:block text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.allChallengeLength}
+              </p>
+              <p className=' hidden xl:block text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.allSuccessLength}
+              </p>
+              <p className=' hidden xl:block text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.allFailureLength}
+              </p>
+              <p className='h-10 py-2 rounded bg-purple-500'>도전중인 목표</p>
+              <p className='h-10 py-2 rounded bg-teal-400'>성공한 목표</p>
+              <p className='h-10 py-2 rounded bg-rose-500'>실패한 목표</p>
+              <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.userChallengeLength}
+              </p>
+              <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.userSuccessLength}
+              </p>
+              <p className='text-lg py-2 my-auto bg-black/10 align-middle'>
+                {data.lengthList.userFailureLength}
+              </p>
+            </section>
+            <section className='flex justify-center items-center mb-4'>
+              <DouqhuntSvg
+                radius={90}
+                colors={['#a855f7', '#2dd4bf', '#f43f5e']}
+                texts={['challenge', 'success', 'failure']}
+                dataset={[
+                  data.lengthList.userChallengeLength,
+                  data.lengthList.userSuccessLength,
+                  data.lengthList.userFailureLength,
+                ]}
+              />
+            </section>
+          </div>
           <ChallengeImageGroups list={data.typeList} />
         </div>
       )}

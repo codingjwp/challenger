@@ -38,7 +38,7 @@ const Header = ({title}: HeaderProps) => {
               <li key={item.path} className='h-12'>
                 <Link
                   role='button'
-                  className='flex m-auto justify-center items-center relative rounded svg-hover-fill'
+                  className='flex m-auto justify-center items-center relative rounded svg-hover-fill md:hover:text-white md:w-full md:px-2'
                   to={item.path}
                 >
                   {item.path === 'challenge' ? (
@@ -46,7 +46,7 @@ const Header = ({title}: HeaderProps) => {
                   ) : (
                     <DashboardSvg />
                   )}
-                  <span className='sr-only'>{item.label}</span>
+                  <span className='sr-only md:not-sr-only'>{item.label}</span>
                 </Link>
               </li>
             );
@@ -54,11 +54,11 @@ const Header = ({title}: HeaderProps) => {
           <li className='h-12'>
             <Button
               mode='fill'
-              className='flex justify-center items-center tracking-wider svg-hover-fill'
+              className='flex justify-center items-center tracking-wider svg-hover-fill md:hover:text-white md:w-full'
               onClick={handleClickModal}
             >
               <LogoutSvg />
-              <span className='sr-only'>로그아웃</span>
+              <span className='sr-only md:not-sr-only'>로그아웃</span>
             </Button>
           </li>
         </ul>

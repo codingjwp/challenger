@@ -22,7 +22,7 @@ const ChallengeTabs = ({
   onModalAction,
 }: ChallengeTabsProps) => {
   return (
-    <Tabs className='flex w-full max-w-[90rem] mx-auto mt-3'>
+    <Tabs className='flex w-full  max-w-3xl mx-auto mt-3'>
       {TAB_ITEMS.map((item) => {
         const tabCounter =
           item.id === 'challenge'

@@ -18,7 +18,7 @@ const ChallengeImageGroups = ({
           className='flex flex-col w-full justify-center items-center'
         >
           <img
-            className={`m-1 w-[7.5rem] h-[5rem] rounded object-cover ${imgLink === item.imgSrc && 'border-4 border-fuchsia-700'}`}
+            className={`m-1 w-[7.5rem] md:w-full h-20 xl:h-32 rounded object-cover ${imgLink === item.imgSrc && 'border-4 border-fuchsia-700'}`}
             id={item.type}
             src={`http://localhost:8080${item.imgSrc}`}
             alt={item.imgAlt}
