@@ -1,7 +1,7 @@
 import {Outlet, useLocation} from 'react-router-dom';
-import Header from '../components/Header';
-import {useGlobalStore} from '../stores/store';
-import GlobalModal from '../components/modals/GlobalModal';
+import Header from '@components/Header';
+import {useGlobalStore} from '@stores/store';
+import GlobalModal from '@modals/GlobalModal';
 
 const RootLayout = () => {
   const location = useLocation();

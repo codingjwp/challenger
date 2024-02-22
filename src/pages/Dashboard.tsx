@@ -1,12 +1,12 @@
 import {redirect} from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query';
 
-import {limitCheckLogin} from '../util/login';
-import {featchGetDashboard} from '../util/http';
+import {limitCheckLogin} from '@util/login';
+import {featchGetDashboard} from '@util/http';
 
-import ChallengeImageGroups from '../components/ChallengeImageGroups';
-import ErrorContainer from '../components/ErrorContainer';
-import {LoadingSvg, DouqhuntSvg} from '../components/SvgItem';
+import ChallengeImageGroups from '@components/ChallengeImageGroups';
+import ErrorContainer from '@ui/ErrorContainer';
+import {LoadingSvg, DouqhuntSvg} from '@ui/SvgItem';
 
 const Dashboard = () => {
   const {data, isLoading, isError, error} = useQuery({

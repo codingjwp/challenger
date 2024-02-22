@@ -1,8 +1,8 @@
 import {useNavigate} from 'react-router-dom';
 
-import Modal from './Modal';
-import Button from '../Button';
-import {removeWebStorage} from '../../util/login';
+import Modal from '@modals/Modal';
+import Button from '@ui/Button';
+import {removeWebStorage} from '@util/login';
 
 type CloseModalProps = {
   onModalClose: () => void;

@@ -1,5 +1,5 @@
 import {QueryClient} from '@tanstack/react-query';
-import {getWebStorage} from './login';
+import {getWebStorage} from '@util/login';
 import {ReturnType, MessageType, ImageListTypes} from 'GlobalCommonTypes';
 
 export const queryClient = new QueryClient();
@@ -9,9 +9,11 @@ export const queryClient = new QueryClient();
  * @param path Api 경로
  * @returns url 주소
  */
-const getUrl = (path?: string) => {
-  const url =
-    (import.meta.env.SERVER_URL || 'http://localhost:8080') + (path || '');
+
+export const URL = import.meta.env.SERVER_URL || 'http://localhost:8080';
+
+export const getUrl = (path?: string) => {
+  const url = URL() + (path || '');
   return url;
 };
 

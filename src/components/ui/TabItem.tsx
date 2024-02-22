@@ -1,5 +1,5 @@
 import {FC, ReactNode} from 'react';
-import Button from './Button';
+import Button from '@ui/Button';
 
 type TabItemProps = {
   children: ReactNode;

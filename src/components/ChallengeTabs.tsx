@@ -1,8 +1,8 @@
-import Button from '../components/Button';
-import TabItem from '../components/TabItem';
-import Tabs from '../components/Tabs';
+import Button from '@ui/Button';
+import TabItem from '@ui/TabItem';
+import Tabs from '@ui/Tabs';
 
-import {TAB_ITEMS} from '../util/viewData';
+import {TAB_ITEMS} from '@util/viewData';
 
 type ChallengeTabsProps = {
   tabIndex: string;

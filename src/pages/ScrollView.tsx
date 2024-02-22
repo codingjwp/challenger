@@ -1,7 +1,7 @@
-import {VIEW_INFO_DATA} from '../util/viewData';
-import ScrollViewItem from '../components/ScrollViewItem';
+import {VIEW_INFO_DATA} from '@util/viewData';
+import ScrollViewItem from '@components/ScrollViewItem';
 import {useNavigate, redirect} from 'react-router-dom';
-import {limitCheckLogin} from '../util/login';
+import {limitCheckLogin} from '@util/login';
 
 const ScrollView = () => {
   const naviate = useNavigate();

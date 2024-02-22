@@ -1,12 +1,11 @@
-import {createBrowserRouter} from 'react-router-dom';
-import RootLayout from '../pages/RootLayout';
-import ScrollView, {loader as viewLoader} from '../pages/ScrollView';
-import Login, {loader as loginLoader} from '../pages/Login';
-import Challenge, {loader as challengeLoader} from '../pages/Challenge';
-import Dashboard, {loader as dashboardLoader} from '../pages/Dashboard';
-import Notfound from '../pages/Notfound';
+import RootLayout from '@pages/RootLayout';
+import ScrollView, {loader as viewLoader} from '@pages/ScrollView';
+import Login, {loader as loginLoader} from '@pages/Login';
+import Challenge, {loader as challengeLoader} from '@pages/Challenge';
+import Dashboard, {loader as dashboardLoader} from '@pages/Dashboard';
+import Notfound from '@pages/Notfound';
 
-export const exampleRouter = createBrowserRouter([
+export const exampleRouter = [
   {
     path: '/',
     element: <RootLayout />,
@@ -39,4 +38,4 @@ export const exampleRouter = createBrowserRouter([
       },
     ],
   },
-]);
+];

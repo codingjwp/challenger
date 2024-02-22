@@ -3,12 +3,12 @@ import {redirect, useLocation, useNavigate} from 'react-router-dom';
 import {useMutation} from '@tanstack/react-query';
 import {motion} from 'framer-motion';
 
-import Input from '../components/Input';
-import Button from '../components/Button';
-import {LoadingSvg} from '../components/SvgItem';
+import Input from '@ui/Input';
+import Button from '@ui/Button';
+import {LoadingSvg} from '@ui/SvgItem';
 
-import {fetchSignupOrSignin, queryClient} from '../util/http';
-import {setWebStorage, limitCheckLogin} from '../util/login';
+import {fetchSignupOrSignin, queryClient} from '@util/http';
+import {setWebStorage, limitCheckLogin} from '@util/login';
 import {ReturnType} from 'GlobalCommonTypes';
 
 type InputGroupsProps = {

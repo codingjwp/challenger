@@ -1,14 +1,14 @@
 import {useMutation} from '@tanstack/react-query';
 
-import Button from '../components/Button';
+import Button from '@ui/Button';
 import {PostViewTypes} from 'GlobalCommonTypes';
 
 import {
   featchDeleteChallenge,
   featchPutChallenge,
   queryClient,
-} from '../util/http';
-import {useGlobalStore} from '../stores/store';
+} from '@util/http';
+import {useGlobalStore} from '@stores/store';
 
 type ChallengeViewProps = {
   posts: PostViewTypes[];

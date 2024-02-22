@@ -1,8 +1,8 @@
-import routerConfig from './route';
+import routerConfig from '@/route';
 import {RouterProvider} from 'react-router-dom';
 import {QueryClientProvider} from '@tanstack/react-query';
-import {queryClient} from './util/http';
-import './index.css';
+import {queryClient} from '@util/http';
+import '@/index.css';
 
 function App() {
   return (

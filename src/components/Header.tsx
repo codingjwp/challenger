@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 
-import CloseModal from './modals/CloseModal';
-import Button from './Button';
-import {DashboardSvg, ChallengeSvg, LogoutSvg} from '../components/SvgItem';
+import CloseModal from '@modals/CloseModal';
+import Button from '@ui/Button';
+import {DashboardSvg, ChallengeSvg, LogoutSvg} from '@ui/SvgItem';
 
-import {LINK_PATH} from '../util/viewData';
+import {LINK_PATH} from '@util/viewData';
 
 type HeaderProps = {
   title: string;

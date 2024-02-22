@@ -1,11 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
+    "target": "es2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "types": ["jest", "node"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+      "@modals/*": ["components/modals/*"],
+      "@ui/*": ["components/ui/*"],
+      "@pages/*": ["pages/*"],
+      "@stores/*": ["stores/*"],
+      "@util/*": ["util/*"],
+      "@assets/*": ["assets/*"],
+    },
 
     /* Bundler mode */
     "esModuleInterop": true,

@@ -1,9 +1,9 @@
-import backgroundMoney from '../assets/backgorund_money.png';
-import backgroundBook from '../assets/background_book.jpg';
-import backgroundExercise from '../assets/background_exercise.png';
-import silhouetteMoney from '../assets/silhouette_money.png';
-import silhouetteBook from '../assets/silhouette_book.png';
-import silhouetteExercise from '../assets/silhouette_exercise.png';
+import backgroundMoney from '@assets/backgorund_money.png';
+import backgroundBook from '@assets/background_book.jpg';
+import backgroundExercise from '@assets/background_exercise.png';
+import silhouetteMoney from '@assets/silhouette_money.png';
+import silhouetteBook from '@assets/silhouette_book.png';
+import silhouetteExercise from '@assets/silhouette_exercise.png';
 
 export const VIEW_INFO_DATA = [
   {

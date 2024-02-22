@@ -1,7 +1,7 @@
-import Modal from './Modal';
-import Button from '../Button';
+import Modal from '@modals/Modal';
+import Button from '@ui/Button';
 
-import {useGlobalStore} from '../../stores/store';
+import {useGlobalStore} from '@stores/store';
 
 const GlobalModal = () => {
   const {types, title, message} = useGlobalStore((state) => state.data);

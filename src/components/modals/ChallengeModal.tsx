@@ -1,12 +1,12 @@
 import {FormEvent, useState} from 'react';
 import {useQuery, useMutation} from '@tanstack/react-query';
 
-import Modal from './Modal';
-import Input from '../Input';
-import Button from '../Button';
-import Textarea from '../Textarea';
-import {LoadingSvg} from '../SvgItem';
-import ChallengeImageGroups from '../ChallengeImageGroups';
+import Modal from '@modals/Modal';
+import Input from '@ui/Input';
+import Button from '@ui/Button';
+import Textarea from '@ui/Textarea';
+import {LoadingSvg} from '@ui/SvgItem';
+import ChallengeImageGroups from '@components/ChallengeImageGroups';
 
 import {PostViewTypes} from 'GlobalCommonTypes';
 

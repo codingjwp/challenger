@@ -1,15 +1,15 @@
 import {useState} from 'react';
 import {redirect} from 'react-router-dom';
 
-import ChallengeModal from '../components/modals/ChallengeModal';
-import ChallengeTabs from '../components/ChallengeTabs';
-import ChallengeView from '../components/ChallengeView';
-import ErrorContainer from '../components/ErrorContainer';
+import ChallengeModal from '@modals/ChallengeModal';
+import ChallengeTabs from '@components/ChallengeTabs';
+import ChallengeView from '@components/ChallengeView';
+import ErrorContainer from '@ui/ErrorContainer';
 
-import {limitCheckLogin} from '../util/login';
+import {limitCheckLogin} from '@util/login';
 import {useQuery} from '@tanstack/react-query';
-import {fetchGetChallenge} from '../util/http';
-import {LoadingSvg} from '../components/SvgItem';
+import {fetchGetChallenge} from '@util/http';
+import {LoadingSvg} from '@ui/SvgItem';
 import {PostViewTypes} from 'GlobalCommonTypes';
 
 type EditModalProps = {

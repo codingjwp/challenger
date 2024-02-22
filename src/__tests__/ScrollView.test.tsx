@@ -1,6 +1,7 @@
 import {RouterProvider, createMemoryRouter} from 'react-router-dom';
+import {Router as RemixRouter} from '@remix-run/router';
 import {exampleRouter} from './exampleRouter';
-import {render, screen} from '@testing-library/react';
+import {act, render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 /**
@@ -8,12 +9,21 @@ import userEvent from '@testing-library/user-event';
  * 1. ScrollViewItem에 h2태그 텍스트 내용이 존재하는지 여부
  * 2. 버튼 클릭 시 useNavigate()가 작동하여 login으로 넘어가는지 여부 확인
  */
+
+jest.mock('@/util/http', () => {
+  return {
+    URL: 'http://localhost:8080',
+  };
+});
+
 describe('ScrollView 컴포넌트', () => {
-  test('ScrollView viewContent 값 확인', () => {
-    const scrollViewRouter = createMemoryRouter(exampleRouter, {
-      initialEntries: ['/'],
+  test('ScrollView viewContent 값 확인', async () => {
+    await act(async () => {
+      const scrollViewRouter = createMemoryRouter(exampleRouter, {
+        initialEntries: ['/'],
+      });
+      render(<RouterProvider router={scrollViewRouter} />);
     });
-    render(<RouterProvider router={scrollViewRouter} />);
 
     const viewItemFirstText = screen.getByText('도전할 준비가 되셨나요?');
     const viewItemSecondText = screen.getByText(
@@ -28,18 +38,25 @@ describe('ScrollView 컴포넌트', () => {
     expect(viewItemThirdText).toBeInTheDocument();
   });
 
-  test('ScrollView button 클릭 시 경로 이동', () => {
+  test('ScrollView button 클릭 시 경로 이동', async () => {
     const user = userEvent.setup();
-    const scrollViewRouter = createMemoryRouter(exampleRouter, {
-      initialEntries: ['/'],
+    let scrollViewRouter: RemixRouter | null = null;
+    await act(async () => {
+      scrollViewRouter = createMemoryRouter(exampleRouter, {
+        initialEntries: ['/'],
+      });
+      render(<RouterProvider router={scrollViewRouter} />);
     });
-    render(<RouterProvider router={scrollViewRouter} />);
     const btnElement = screen.getAllByRole('button');
     btnElement.forEach(async (btn) => {
       await user.click(btn);
-      const viewText = screen.queryByText(/login page/i);
+      const viewText = screen.queryByText(/CHALLENGER/i);
       expect(viewText).not.toBeNull();
-      scrollViewRouter.navigate(-1);
+      scrollViewRouter!.navigate(-1);
     });
+  });
+
+  afterEach(() => {
+    jest.resetModules();
   });
 });
