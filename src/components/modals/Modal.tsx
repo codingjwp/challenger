@@ -4,7 +4,6 @@ import {motion} from 'framer-motion';
 
 type ModalProps = {
   title: string;
-  // mode: 'base' | 'error' | 'sucees';
   className?: string;
   children?: ReactNode;
   onClose: () => void;

@@ -1,28 +1,42 @@
+import {createBrowserRouter} from 'react-router-dom';
 import RootLayout from '../pages/RootLayout';
-import ScrollView from '../pages/ScrollView';
+import ScrollView, {loader as viewLoader} from '../pages/ScrollView';
+import Login, {loader as loginLoader} from '../pages/Login';
+import Challenge, {loader as challengeLoader} from '../pages/Challenge';
+import Dashboard, {loader as dashboardLoader} from '../pages/Dashboard';
+import Notfound from '../pages/Notfound';
 
-export const exampleRouter = [
+export const exampleRouter = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <div>notfound</div>,
+    errorElement: <Notfound />,
     children: [
       {
         index: true,
         element: <ScrollView />,
+        loader: viewLoader,
       },
       {
-        path: 'login',
-        element: <div>Login Page</div>,
+        path: 'signin',
+        element: <Login />,
+        loader: loginLoader,
+      },
+      {
+        path: 'signup',
+        element: <Login />,
+        loader: loginLoader,
       },
       {
         path: 'challenge',
-        element: <div>challenge page</div>,
+        element: <Challenge />,
+        loader: challengeLoader,
       },
       {
         path: 'dashboard',
-        element: <div>Dashboard page</div>,
+        element: <Dashboard />,
+        loader: dashboardLoader,
       },
     ],
   },
-];
+]);

@@ -68,7 +68,6 @@ const Dashboard = () => {
               <DouqhuntSvg
                 radius={90}
                 colors={['#a855f7', '#2dd4bf', '#f43f5e']}
-                texts={['challenge', 'success', 'failure']}
                 dataset={[
                   data.lengthList.userChallengeLength,
                   data.lengthList.userSuccessLength,

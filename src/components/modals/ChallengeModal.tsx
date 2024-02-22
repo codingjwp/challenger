@@ -6,6 +6,7 @@ import Input from '../Input';
 import Button from '../Button';
 import Textarea from '../Textarea';
 import {LoadingSvg} from '../SvgItem';
+import ChallengeImageGroups from '../ChallengeImageGroups';
 
 import {PostViewTypes} from 'GlobalCommonTypes';
 
@@ -14,7 +15,6 @@ import {
   featchEditChallenge,
   queryClient,
 } from '../../util/http';
-import ChallengeImageGroups from '../ChallengeImageGroups';
 
 type ChallengeModalProps = {
   type: string;
@@ -75,7 +75,7 @@ const ChallengeModal = ({
     const min = new Date();
     const year = min.getFullYear();
     const month = String(min.getMonth() + 1).padStart(2, '0');
-    const day = min.getDate();
+    const day = String(min.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
 

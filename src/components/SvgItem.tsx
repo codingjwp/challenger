@@ -83,16 +83,10 @@ export const LogoutSvg = ({className}: SvgTypes) => {
 type DouqhuntSvgTypes = {
   radius: number;
   colors: string[];
-  texts: string[];
   dataset: number[];
 };
 
-export const DouqhuntSvg = ({
-  radius,
-  colors,
-  texts,
-  dataset,
-}: DouqhuntSvgTypes) => {
+export const DouqhuntSvg = ({radius, colors, dataset}: DouqhuntSvgTypes) => {
   const diameter = 2 * Math.PI * radius;
   const total = dataset.reduce((r, v) => r + v, 0);
   const acc = dataset.reduce(

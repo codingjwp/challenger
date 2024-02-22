@@ -4,12 +4,13 @@ import ScrollView, {loader as viewLoader} from './pages/ScrollView';
 import Login, {loader as loginLoader} from './pages/Login';
 import Challenge, {loader as challengeLoader} from './pages/Challenge';
 import Dashboard, {loader as dashboardLoader} from './pages/Dashboard';
+import Notfound from './pages/Notfound';
 
 const routerConfig = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <div>t</div>,
+    errorElement: <Notfound />,
     children: [
       {
         index: true,
