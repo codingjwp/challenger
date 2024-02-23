@@ -1,6 +1,6 @@
 import {RouterProvider, createMemoryRouter} from 'react-router-dom';
 import {Router as RemixRouter} from '@remix-run/router';
-import {exampleRouter} from './exampleRouter';
+import {exampleRouter} from '../exampleRouter';
 import {act, render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -17,7 +17,7 @@ jest.mock('@/util/http', () => {
 });
 
 describe('ScrollView 컴포넌트', () => {
-  test('ScrollView viewContent 값 확인', async () => {
+  it('ScrollView viewContent 값 확인', async () => {
     await act(async () => {
       const scrollViewRouter = createMemoryRouter(exampleRouter, {
         initialEntries: ['/'],
@@ -38,7 +38,7 @@ describe('ScrollView 컴포넌트', () => {
     expect(viewItemThirdText).toBeInTheDocument();
   });
 
-  test('ScrollView button 클릭 시 경로 이동', async () => {
+  it('ScrollView button 클릭 시 경로 이동', async () => {
     const user = userEvent.setup();
     let scrollViewRouter: RemixRouter | null = null;
     await act(async () => {
