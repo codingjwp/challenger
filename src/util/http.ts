@@ -13,7 +13,7 @@ export const queryClient = new QueryClient();
 export const URL = import.meta.env.SERVER_URL || 'http://localhost:8080';
 
 export const getUrl = (path?: string) => {
-  const url = URL() + (path || '');
+  const url = URL + (path || '');
   return url;
 };
 
@@ -187,7 +187,7 @@ export const featchPutChallenge = async ({
  * @param postId 포스트 ID
  * @returns 성공 메세지, 에러 메세지
  */
-export const featchDeleteChallenge = async (postId: string) => {
+export const featchDeleteChallenge = async ({postId}: {postId: string}) => {
   const userInfo = getWebStorage();
   const url = getUrl('/challenge/' + postId);
   const options = getFetchOptions(

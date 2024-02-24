@@ -16,6 +16,7 @@ const jestConfig = {
     '@stores/(.*)$': '<rootDir>/src/stores/$1',
     '@util/(.*)$': '<rootDir>/src/util/$1',
     '@assets/(.*)$': '<rootDir>/src/assets/$1',
+    '@hooks/(.*)$': '<rootDir>/src/hooks/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules', '<rootDir>/dist', '<rootDir>/public', '<rootDir>/src/__tests__/exampleRouter.tsx']
 };

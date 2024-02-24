@@ -27,7 +27,7 @@ const ChallengeView = ({
     isPending: isDeleting,
     reset,
   } = useMutation({
-    mutationFn: (postId: string) => featchDeleteChallenge(postId),
+    mutationFn: featchDeleteChallenge,
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['views', tabIndex]});
       reset();
@@ -71,7 +71,7 @@ const ChallengeView = ({
   };
 
   const handleDeletePost = (postId: string) => {
-    mutate(postId);
+    mutate({postId});
   };
   const handleStatusChangePost = (postId: string, status: string) => {
     statusMutate({postId, status});

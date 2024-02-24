@@ -16,6 +16,7 @@
       "@stores/*": ["stores/*"],
       "@util/*": ["util/*"],
       "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"],
     },
 
     /* Bundler mode */

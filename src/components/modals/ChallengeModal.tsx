@@ -1,5 +1,5 @@
 import {FormEvent, useState} from 'react';
-import {useQuery, useMutation} from '@tanstack/react-query';
+import {useMutation} from '@tanstack/react-query';
 
 import Modal from '@modals/Modal';
 import Input from '@ui/Input';
@@ -7,9 +7,9 @@ import Button from '@ui/Button';
 import Textarea from '@ui/Textarea';
 import {LoadingSvg} from '@ui/SvgItem';
 import ChallengeImageGroups from '@components/ChallengeImageGroups';
+import {useFetchQuery} from '@hooks/useFetchQuery';
 
 import {PostViewTypes} from 'GlobalCommonTypes';
-
 import {
   featchChallengeImage,
   featchEditChallenge,
@@ -29,12 +29,10 @@ const ChallengeModal = ({
 }: ChallengeModalProps) => {
   const baseStyle = 'rounded-md w-full p-2 mb-2';
   const [imgLink, setImgLink] = useState(editValue?.imgSrc || '');
-  const {data, isPending, isError, error} = useQuery({
-    queryKey: ['images'],
-    queryFn: featchChallengeImage,
-    gcTime: 1000 * 60 * 60 * 24,
-    retry: 3,
-  });
+  const {data, isPending, isError, error} = useFetchQuery(
+    ['images'],
+    featchChallengeImage,
+  );
   const {
     mutate,
     reset,

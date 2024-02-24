@@ -5,9 +5,9 @@ import ChallengeModal from '@modals/ChallengeModal';
 import ChallengeTabs from '@components/ChallengeTabs';
 import ChallengeView from '@components/ChallengeView';
 import ErrorContainer from '@ui/ErrorContainer';
+import {useFetchQuery} from '@hooks/useFetchQuery';
 
 import {limitCheckLogin} from '@util/login';
-import {useQuery} from '@tanstack/react-query';
 import {fetchGetChallenge} from '@util/http';
 import {LoadingSvg} from '@ui/SvgItem';
 import {PostViewTypes} from 'GlobalCommonTypes';
@@ -25,12 +25,10 @@ const Challenge = () => {
     open: false,
     editValue: undefined,
   });
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['views', tabIndex],
-    queryFn: () => fetchGetChallenge(tabIndex),
-    gcTime: 1000 * 60 * 60 * 24,
-    retry: 3,
-  });
+  const {data, isLoading, isError, error} = useFetchQuery(
+    ['views', tabIndex],
+    () => fetchGetChallenge(tabIndex),
+  );
 
   const handleTabsClick = (index: string) => {
     setTabIndex(index);

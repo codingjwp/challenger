@@ -1,20 +1,18 @@
 import {redirect} from 'react-router-dom';
-import {useQuery} from '@tanstack/react-query';
 
 import {limitCheckLogin} from '@util/login';
 import {featchGetDashboard} from '@util/http';
 
 import ChallengeImageGroups from '@components/ChallengeImageGroups';
 import ErrorContainer from '@ui/ErrorContainer';
+import {useFetchQuery} from '@hooks/useFetchQuery';
 import {LoadingSvg, DouqhuntSvg} from '@ui/SvgItem';
 
 const Dashboard = () => {
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['dashboard'],
-    queryFn: featchGetDashboard,
-    gcTime: 1000 * 60 * 60 * 24,
-    retry: 3,
-  });
+  const {data, isLoading, isError, error} = useFetchQuery(
+    ['dashboard'],
+    featchGetDashboard,
+  );
   return (
     <main className='pt-12 max-w-[80rem] mx-auto'>
       {isLoading && (
