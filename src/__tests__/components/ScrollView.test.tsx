@@ -4,18 +4,6 @@ import {exampleRouter} from '../exampleRouter';
 import {act, render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-/**
- * ScrollView 컴포넌트 테스트 안에 ScrollViewItem 컴포넌트도 적용
- * 1. ScrollViewItem에 h2태그 텍스트 내용이 존재하는지 여부
- * 2. 버튼 클릭 시 useNavigate()가 작동하여 login으로 넘어가는지 여부 확인
- */
-
-jest.mock('@/util/http', () => {
-  return {
-    URL: 'http://localhost:8080',
-  };
-});
-
 describe('ScrollView 컴포넌트', () => {
   it('ScrollView viewContent 값 확인', async () => {
     await act(async () => {
@@ -54,9 +42,5 @@ describe('ScrollView 컴포넌트', () => {
       expect(viewText).not.toBeNull();
       scrollViewRouter!.navigate(-1);
     });
-  });
-
-  afterEach(() => {
-    jest.resetModules();
   });
 });

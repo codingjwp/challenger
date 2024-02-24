@@ -1,25 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import ChallengeTabs from '@/components/ChallengeTabs';
 
-jest.mock('@util/viewData', () => {
-  return {
-    TAB_ITEMS: [
-      {
-        id: 'challenge',
-        label: '도전',
-      },
-      {
-        id: 'success',
-        label: '성공',
-      },
-      {
-        id: 'failure',
-        label: '실패',
-      },
-    ],
-  };
-});
-
 describe('ChallengeTabs 컴포넌트', () => {
   it('렌더링후 표시되는 내용 테스트', () => {
     const counter = {

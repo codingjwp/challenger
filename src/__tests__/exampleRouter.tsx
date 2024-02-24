@@ -4,6 +4,8 @@ import Login, {loader as loginLoader} from '@pages/Login';
 import Challenge, {loader as challengeLoader} from '@pages/Challenge';
 import Dashboard, {loader as dashboardLoader} from '@pages/Dashboard';
 import Notfound from '@pages/Notfound';
+import {ReactNode} from 'react';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 export const exampleRouter = [
   {
@@ -39,3 +41,15 @@ export const exampleRouter = [
     ],
   },
 ];
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+export const wrapper = ({children}: {children: ReactNode}) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);

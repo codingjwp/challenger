@@ -17,6 +17,7 @@ describe('ChallengeImageGroups 컴포넌트', () => {
       type: 'exercises',
     },
   ];
+
   it('props를 전달 후 렌더링 테스트', async () => {
     render(<ChallengeImageGroups list={list} imgLink='' onSelect={() => {}} />);
 
@@ -25,6 +26,7 @@ describe('ChallengeImageGroups 컴포넌트', () => {
       expect(item).toBeInTheDocument();
     });
   });
+
   it('props에서 imgLink가 존재할 경우 테두리 색상 변환 테스트', async () => {
     const type = list[0].type;
     const imgSrc = list[0].imgSrc;
