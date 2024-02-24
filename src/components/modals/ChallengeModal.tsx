@@ -1,5 +1,4 @@
 import {FormEvent, useState} from 'react';
-import {useMutation} from '@tanstack/react-query';
 
 import Modal from '@modals/Modal';
 import Input from '@ui/Input';
@@ -8,13 +7,10 @@ import Textarea from '@ui/Textarea';
 import {LoadingSvg} from '@ui/SvgItem';
 import ChallengeImageGroups from '@components/ChallengeImageGroups';
 import {useFetchQuery} from '@hooks/useFetchQuery';
+import {useEditMutation} from '@/hooks/useEditMutation';
 
 import {PostViewTypes} from 'GlobalCommonTypes';
-import {
-  featchChallengeImage,
-  featchEditChallenge,
-  queryClient,
-} from '../../util/http';
+import {featchChallengeImage, featchEditChallenge} from '../../util/http';
 
 type ChallengeModalProps = {
   type: string;
@@ -33,19 +29,9 @@ const ChallengeModal = ({
     ['images'],
     featchChallengeImage,
   );
-  const {
-    mutate,
-    reset,
-    isPending: isEditPending,
-    isError: isEditError,
-    error: editError,
-  } = useMutation({
-    mutationFn: featchEditChallenge,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['views', 'challenge']});
-      reset();
-      onModalAction(type);
-    },
+  const {mutate, isEditPending, isEditError, editError} = useEditMutation({
+    editFn: featchEditChallenge,
+    modalAction: () => onModalAction(type),
   });
 
   const handleCallengeSubmit = (event: FormEvent) => {
@@ -70,7 +56,10 @@ const ChallengeModal = ({
     setImgLink(imgSrc);
   };
   const minDay = () => {
-    const min = new Date();
+    let min = new Date();
+    if (type !== 'create') {
+      min = new Date(editValue!.startDate!);
+    }
     const year = min.getFullYear();
     const month = String(min.getMonth() + 1).padStart(2, '0');
     const day = String(min.getDate()).padStart(2, '0');
@@ -140,7 +129,7 @@ const ChallengeModal = ({
         />
         {isEditError && (
           <p className='text-sm text-red-600 mb-2 font-bold'>
-            {editError.message || '챌린지 생성에서 문제가 발생하였습니다.'}
+            {editError?.message || '챌린지 생성에서 문제가 발생하였습니다.'}
           </p>
         )}
         <div className='flex gap-2 justify-end'>

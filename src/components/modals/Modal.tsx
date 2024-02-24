@@ -11,7 +11,7 @@ type ModalProps = {
 
 const Modal = ({title, className, children, onClose}: ModalProps) => {
   const modalStyles =
-    'min-w-[23rem] top-[8%] p-6 rounded-md z-10' +
+    'fixed min-w-[23rem] top-[6%] p-6 rounded-md z-10' +
     (className ? ` ${className}` : '');
   return createPortal(
     <>
